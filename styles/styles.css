@@ -1,0 +1,33 @@
+p {
+    text-align: left;
+}
+
+
+.container-master{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.columnOne {
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.menuItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.columnTwo {
+    display: flex;
+    flex-direction: column;
+    background-color: bisque;
+}
