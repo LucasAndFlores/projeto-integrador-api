@@ -60,6 +60,7 @@ nav ul {
   border-radius: 55px;
   font-size: 34px;
   padding: 0% 5%;
+  border: none;
 }
 
 #fundo-azul:hover {
@@ -311,4 +312,29 @@ main article section p {
   padding: 2% 5%;
   border-radius: 55px;
   border: none;
+}
+
+#cadastrar_div {
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+}
+
+#form-box {
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+}
+
+#cadastrar:hover {
+  background: #495bfa;
+  transition: 0.3s;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  #form-right {
+    display: none;
+  }
 }

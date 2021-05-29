@@ -1,0 +1,272 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    background-color: #EFEFEF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Rokkitt;
+    width: 100%;
+}
+
+header {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: black;
+    margin-bottom: 62px;
+    
+}
+
+header img {
+    width: 325px;
+    height: 112px;
+    /* margin-left: 70px; */
+}
+
+nav {
+    background-color: #EFF7E1;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    border-radius: 55px;
+    font-style: normal;
+    font-weight: bold;
+    align-content: center;
+    line-height: 80px;
+    font-size: 34px;
+    align-items: center;
+    
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 5%;
+    
+}
+
+#fundo-azul {
+    background-color: #495BFA;
+    color: white;
+    border-radius: 55px;
+    font-size: 34px;
+    padding: 0% 5%;
+}
+
+#fundo-azul:hover {
+    background: #5CBA9B;
+    transition: .3s;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main section {
+    font-size: 30px;
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.img-hero {
+    height: 358px;
+    width: 100%;
+    /* margin-bottom: 70px; */
+    justify-content: center;
+}
+
+main article {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0 20px;
+    width: 100%;
+}
+
+main article section {
+    flex-direction: column;
+    align-items: center;
+}
+
+main article section div  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(img/Ellipse\ 2.png);
+    height: 108px;
+    width: 117px;
+    margin-bottom: 28px;
+}
+
+main article section p {
+    display: flex;
+    align-items: center;
+    width: 304px;
+    text-align: center;
+}
+
+@media (max-width: 1279px) {
+    main article {
+        width: 100%;
+    }
+
+    main section h1 {
+        font-size: 36px;
+        text-align: center;
+
+    }
+
+    header {
+        flex-direction: column;
+        width: 90%;
+        
+    }
+
+    nav {
+        flex-direction: column;
+        font-size: 28px;
+        margin-top: 20px;
+    }
+
+    body {
+        width: 100%;
+    }
+
+    #fundo-azul {
+        font-size: 28px;
+    }
+
+    article section p {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 950px) {
+    main article {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    main article {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    main section h1 {
+        font-size: 24px;
+        text-align: center;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    header {
+        flex-direction: column;
+        width: 90%;        
+    }
+
+    nav {
+        flex-direction: column;
+        font-size: 18px;
+        line-height: 60px;
+        height: 60px;
+    }
+
+    body {
+        width: 100%;
+    }
+
+    #fundo-azul {
+        font-size: 18px;
+    }
+
+    article section p {
+        font-size: 24px;
+    }
+}
+
+/* Página Login */
+
+.border-right {
+    display: flex;
+    /* border-right: 3px solid black; */
+}
+
+.main-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.div-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 658px;
+    width: 476px;
+    font-size: 34px;
+    font-weight: bold;
+
+}
+
+.form-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 506px;
+    width: 476px;
+}
+
+.input-size {
+    height: 60px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); 
+}
+
+#label-center {
+    display: flex;
+    font-size: 25px;
+}
+
+.forgot {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-font {
+    font-size: 30px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));    
+}
+
+.div-avatar {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .border-right {
+        display: none;
+    }
+}
+
+@media (max-width: 1269px) {
+    .border-right {
+        display: none;
+    }
+}
