@@ -1,18 +1,18 @@
-p {
-    text-align: left;
+body {
+    background-color: #E5E5E5;   
+    font-family: 'Roboto', sans-serif;
 }
 
 
 .container-master{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    background-color: #E5E5E5;
 }
 
 .columnOne {
     display: flex;
     flex-direction: column;
-    background-color: aqua;
 }
 
 .menu {
@@ -35,7 +35,6 @@ p {
 .columnTwo {
     display: flex;
     flex-direction: column;
-    background-color: bisque;
     width: 60%;
     height: 100vh;
 }
@@ -44,6 +43,8 @@ p {
     display: flex;
     flex-direction: column;
     background-color: white;
+    border-radius: 20px;
+    margin: 10px 10px;
     /* height: 100px; */
 }
 
@@ -73,6 +74,35 @@ p {
 
 .chart {
     display: flex;
-    background-color: wheat;
+    flex-direction: column;
+    background-color: white;
     height: 350px;
+}
+
+.columnThree {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100vh;
+}
+
+.welcomeModal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+.loginModal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 14px;
+}
+
+.userInformation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
