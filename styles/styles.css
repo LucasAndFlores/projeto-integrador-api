@@ -26,8 +26,53 @@ p {
     align-items: center;
     justify-content: flex-start;
 }
+
+.menuText {
+    font-size: 14px;
+    margin-left: 5px;
+    text-align: left;
+}
 .columnTwo {
     display: flex;
     flex-direction: column;
     background-color: bisque;
+    width: 60%;
+    height: 100vh;
+}
+
+.transactionHistory {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    /* height: 100px; */
+}
+
+.paymentHistory {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: white;
+    font-size: 14px;
+}
+
+.itensColumnTransaction{
+    display: flex;
+    flex-direction: column;
+}
+
+.itemAlign {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.itemText {
+    margin-left: 5px;
+}
+
+.chart {
+    display: flex;
+    background-color: wheat;
+    height: 350px;
 }
