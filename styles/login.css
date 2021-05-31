@@ -63,6 +63,7 @@ nav ul {
     border-radius: 55px;
     font-size: 34px;
     padding: 0% 5%;
+    border: none;
 }
 
 #fundo-azul:hover {
