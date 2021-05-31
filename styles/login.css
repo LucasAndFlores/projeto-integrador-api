@@ -58,7 +58,7 @@ nav ul {
 }
 
 #fundo-azul {
-    background-color: #495BFA;
+    background-color: #5CBA9B;    
     color: white;
     border-radius: 55px;
     font-size: 34px;
@@ -67,7 +67,7 @@ nav ul {
 }
 
 #fundo-azul:hover {
-    background: #5CBA9B;
+    background: #495BFA;
     transition: .3s;
     opacity: 0.7;
     cursor: pointer;
