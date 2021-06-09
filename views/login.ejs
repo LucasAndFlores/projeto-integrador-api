@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='pt-BR'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='./stylesheets/login.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@100&display=swap" rel="stylesheet">
+    <title>Economize+ | Login</title>
+</head>
+<body>
+    
+    <%- include('./partials/_header') %> 
+
+    <main class="main-login">
+        <div class="border-right">
+            <img src="img/xcomo-controlar-a-ansiedade.png.pagespeed.ic 1.png" alt="">
+        </div>
+            <div class="div-login">
+            <div class="div-avatar">
+                <img src="img/user (1) 1.png" alt="">
+            </div>
+
+            <form class="form-flex" action="">
+                <div class="div-separaLogin">
+                    <label for="email">Email</label>                
+                    <input class="input-size" type="email" name="email" placeholder="Informe o E-mail" required>
+                </div>
+
+                <div class="div-separaLogin">
+                    <label for="senha">Senha</label>                
+                    <input class="input-size" type="password" name="senha" placeholder="Informe a senha" required>
+                </div>
+
+                <button id="fundo-azul" class="input-size btn-font" type="submit">Login</button>
+
+                <div class="forgot">
+                    <a href="/recuperarsenha" id="label-center">Esqueceu a senha?</a>               
+                    <label id="label-center" for="text">Ainda não tem cadastro?</label>
+                </div>
+                <button id="fundo-azul" class="input-size btn-font" type="button" onclick="window.location.href='/cadastro'">Crie uma conta</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
+
+<a href=""></a>
