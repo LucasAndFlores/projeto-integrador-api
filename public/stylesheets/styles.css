@@ -196,3 +196,94 @@ body {
 .info-padding {
     margin-left: 20px;
 }
+
+@media (max-width: 1279px) {
+    
+} 
+
+@media (max-width: 768px) {
+    .columnTwo {
+        width: 50%;
+        }
+} 
+    
+@media (max-width: 480px) {
+    .columnOne {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: auto;     
+        align-items: flex-start;      
+        /* margin-bottom: 16px; */
+        /* position: relative;   */   
+    }
+
+    .menuItem {
+        padding: 0px 4px;
+        margin-bottom: 0px;
+        background-color: #EFF7E1;
+        border-radius: 55px;
+    }
+
+    .menuText {
+        margin: 0px;
+        
+        
+    }
+
+    button img {
+        display: none;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        background-color: #EFF7E1;
+        height: 24px;
+        border-radius: 55px;
+    }
+
+    .columnTwo {
+        width: 100vw;
+        margin-top: 16px;
+    }
+
+    .margin-resumo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 40px;
+        margin-left: 0px;
+        align-items: center;
+    }
+
+    .container-master {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .columnThree {
+        width: 100vw;
+    }
+
+    .loginModal {
+        position: absolute;
+        top: 65px;
+        right: 40px;
+    }
+
+    .img-header {
+        display: flex;
+        margin-left: 24px;
+    }
+
+   .img-columnthree {
+       position: absolute;
+   }
+
+    
+
+
+} 
