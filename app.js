@@ -11,7 +11,6 @@ app.use(express.static('public'));
 
 app.get('/', (req, res) => {res.render ('home');});
 app.get('/login/', (req, res) => {res.render ('login');});
-app.get('/recuperarsenha', (req, res) => {res.render ('loginForgotPsw');})
 app.get('/cadastro/', (req, res) => {res.render ('cadastro');});
 app.get('/index/', (req, res) => {res.render ('index');});
 
@@ -20,5 +19,5 @@ app.use('/', rotasHome);
 app.use('/login', rotasLogin);
 
 app.listen(port, () => {
-    console.log("Server started on port ${port}...")
-})
+    console.log('Server started on port: ' + port)
+});
