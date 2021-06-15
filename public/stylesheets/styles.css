@@ -47,9 +47,13 @@ body {
     font-size: 14px;
 }
 
-.menuItem:hover {
+.menuItem:hover:not(.menuItem-active) {
     background-color: #5CBA9B;
     transition: 0.5s;
+}
+
+.menuItem-active {
+    background-color: #976EB0;
 }
 
 .menuText {
