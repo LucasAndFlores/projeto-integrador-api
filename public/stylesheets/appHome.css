@@ -12,6 +12,9 @@ body {
     width: 100vw;
 }
 
+h2 {
+    font-size: 20px;
+}
 
 .container-master{
     display: flex;
@@ -89,38 +92,30 @@ body {
 .paymentHistory {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    align-items: flex-start;
     background-color: white;
     font-size: 16px;
     height: 100%;
     
 }
 
-.itensColumnTransaction{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-around;
+.tabelaGastos {
+    width: 100%;
+    height: 340px;
+    text-align: left;
+    border-collapse: collapse;
 }
 
-.itemAlign {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-top: 5px;
+
+
+tbody tr {
+    border-bottom: 1px solid #c2c2c2;
 }
 
 .itemText {
     margin-left: 5px;
 }
-
-/* .chart {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    height: 350px;
-    width: 100%;
-} */
 
 .columnThree {
     display: flex;
@@ -140,6 +135,11 @@ body {
     justify-content: space-around;
     padding: 10px;
 
+}
+
+.headerobjetivos {
+    font-size: 20px;
+    margin-left: 3px;
 }
 
 .cardObjectives{
@@ -205,6 +205,11 @@ body {
     flex-direction: column;
     justify-content: space-around;
     padding: 10px;
+}
+
+.headeratingimento {
+    font-size: 20px;
+    margin-left: 3px;
 }
 
 .percentualAtgum{
@@ -282,18 +287,120 @@ body {
 .percentualAtgdois{
     width: 100%;
     height: 60px;
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
     display: flex;
     flex-direction: row;
     align-items: center;
 
 }
 
-.percentualAtgtres{
-    width: 100%;
-    height: 60px;
-    background-color: yellowgreen;
+.coloriddois{
+    width: 90%;
+    height: 44px;
+    background-color: #DDF9E4;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
 
+.barrapreenchimentodois {
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(90deg, #209D43 0%, #2BC255 100%);
+    border-radius: 14px;
+}
+
+.coloridtres{
+    width: 90%;
+    height: 44px;
+    background-color: #E4F0FF;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.barrapreenchimentotres {
+    height: 100%;
+    width: 80%;
+    background: linear-gradient(90deg, #3f88e0 0%,  #6da1e0 100%);
+    border-radius: 14px;
+}
+
+.cartoesGasto {
+    width: 95%;
+    height: 250px;
+    background-color: white;
+    border-radius: 20px;
+    /* margin: 10px 0; */
+    display: flex;
+}
+
+.headergasto {
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.gastopormeio{
+    width: 100%;
+    height: 230px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.meiosagrupados{
+    width: 100%;
+    height: 150px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.pagamento {
+    width: 45%;
+    height: 170px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    box-shadow: 0px 16px 24px rgb(0 0 0 / 6%), 0px 2px 6px rgb(0 0 0 / 4%), 0px 0px 1px rgb(0 0 0 / 4%);
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.pagementoObj{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 150px;
+    padding: 5px;
+
+}
+
+.credito {
+    width: 45%;
+    height: 170px;
+    background-color: white;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    box-shadow: 0px 16px 24px rgb(0 0 0 / 6%), 0px 2px 6px rgb(0 0 0 / 4%), 0px 0px 1px rgb(0 0 0 / 4%);
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
 }
 
 .welcomeModal {
@@ -341,12 +448,12 @@ body {
     margin: 0px;
 }
 
-.img-columnthree {
+/* .img-columnthree {
     display: flex;
     flex-direction: column;
     margin-bottom: 14px;
     width: 100%;   
-}
+} */
 
 #img-1 {
     height: 247px;
@@ -446,9 +553,133 @@ body {
         margin-left: 24px;
     }
 
-   .img-columnthree {
-       position: absolute;
-   }
+    .navstyle {
+        display: none;
+    }
+
+
+
+    
+
+
+} 
+@media (max-width: 425px) {
+    h2, h3, h4 {
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .columnOne {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+        height: auto;     
+        align-items: flex-start;      
+        /* margin-bottom: 16px; */
+        /* position: relative;   */   
+    }
+
+    .img-header {
+        align-items: center;
+        display: flex;
+        margin-left: 24px;
+        flex-direction: row;
+        
+    }
+
+    .navstyle {
+        margin-left: 50px;
+        width: 2em
+    }
+
+    .menuItem {
+        padding: 0px 4px;
+        margin-bottom: 0px;
+        background-color: #EFF7E1;
+        border-radius: 55px;
+    }
+
+    .menuText {
+        margin: 0px;
+        
+        
+    }
+
+    button img {
+        display: none;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        background-color: #EFF7E1;
+        height: 24px;
+        border-radius: 55px;
+    }
+
+    .columnTwo {
+        width: 100vw;
+        margin-top: 16px;
+    }
+
+    .transactionHistory {
+        display: none;
+    }
+
+    .tabelaGastos {
+        width: 100%;
+        height: 340px;
+        text-align: left;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    .margin-resumo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 40px;
+        margin-left: 0px;
+        align-items: center;
+    }
+
+    .container-master {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .columnThree {
+        width: 100vw;
+        padding: 2px;
+    }
+
+    .columnthreeData {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* margin: 5px; */
+        margin-left: 10px;
+        position: absolute;
+
+    }
+
+    .modal-row{
+    }
+
+    .loginModal {
+        position: absolute;
+        top: 65px;
+        right: 40px;
+    }
+
+  
+
+
 
     
 
