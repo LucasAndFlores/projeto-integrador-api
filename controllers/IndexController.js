@@ -1,5 +1,4 @@
 const IndexController = {
-
     verCartoes: (req, res) => {
         res.send('Ver cartões');
     },

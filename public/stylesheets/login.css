@@ -43,7 +43,8 @@ nav {
     font-weight: bold;
     align-content: center;
     line-height: 80px;
-    font-size: 34px;
+
+    font-size: 1.5rem;
     align-items: center;
     
 }
@@ -88,8 +89,8 @@ main section {
 
 .img-hero {
     height: 358px;
-    width: 100%;
-    /* margin-bottom: 70px; */
+
+    width: 100vw;
     justify-content: center;
 }
 
