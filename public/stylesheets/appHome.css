@@ -471,6 +471,10 @@ tbody tr {
     margin-left: 20px;
 }
 
+.navstyle{
+    display: none;
+}
+
 @media (max-width: 1279px) {
     
 } 
