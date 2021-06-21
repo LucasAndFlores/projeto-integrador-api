@@ -55,6 +55,7 @@ nav ul {
 }
 
 #fundo-azul {
+
   background-color: #5CBA9B;
   color: white;
   border-radius: 55px;
@@ -304,6 +305,7 @@ main article section p {
 #form-right {
   display: flex;
   flex-direction: column;
+
   flex-grow: 2;
   justify-content: space-around;
   align-items: center;
