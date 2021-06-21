@@ -7,7 +7,7 @@ router.get('/recuperarsenha', (req, res) => {
     res.render('loginForgotPsw')
 });
 
-
+router.get('/', LoginController.acessoLogin);
 router.post('/', LoginController.autenticaUsuario);
 
 

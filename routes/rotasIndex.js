@@ -3,6 +3,8 @@ const router = express.Router();
 
 const IndexController = require('../controllers/IndexController');
 
+router.get('/', IndexController.AcessoHome);
+
 router.get('/cartoes', IndexController.verCartoes);
 router.get('/transacoes', IndexController.verTransacoes);
 router.get('/entradas', IndexController.verEntradas);

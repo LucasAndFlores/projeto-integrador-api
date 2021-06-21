@@ -1,4 +1,8 @@
 const IndexController = {
+    AcessoHome: (req, res) => {
+        res.render('index');
+    },
+
     verCartoes: (req, res) => {
         res.send('Ver cartões');
     },

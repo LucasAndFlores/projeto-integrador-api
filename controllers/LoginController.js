@@ -1,4 +1,8 @@
 const LoginController = {
+    acessoLogin: (req, res) => {
+        res.render('login');
+    },
+
     verRecuperarSenha: (req, res) => {
         return res.render('loginForgotPsw');
     },
