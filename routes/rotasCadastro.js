@@ -1,25 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-/* const storage = multer.memoryStorage(); */
-/* const uploadFile = multer({ storage: storage }); */
+const upload = multer({ dest: 'storage' });
 
 
 const CadastroController = require('../controllers/CadastroController');
 
-router.post('/', CadastroController.cadastraUsuario);
+/* router.post('/upload', upload.single('image'), CadastroController.cadastraUsuario);  */
 
-/* const storage = multer.diskStorage({ 
-    destination: function (req, file, cb) { 
-       cb(null, './public/images/avatars'); 
-    }, 
-    filename: function (req, file, cb) { 
-       cb(null, `${Date.now()}_img_${path.extname(file.originalname)}`);  } 
-  });
-
-  router.post('/register', uploadFile.single('avatar'), usersController.create); */
-
-
-
+router.post('/', (req, res) => {
+   res.render('cadastro')
+});
 
 module.exports = router;

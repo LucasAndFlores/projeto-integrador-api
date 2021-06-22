@@ -19,7 +19,7 @@
     <div id="caixa-cadastro">
       <div id="form-box">
         <div id="form">
-          <form action='/cadastro' method="POST">
+          <form action="/index" method="POST" enctype="multipart/form-data">
             <p id="bemvindo">Bem vindo ao cadastro da Economize+</p>
             <br />
             <label class="label" for="nome">Nome</label>
@@ -44,11 +44,15 @@
             <br />
             <label class="label" for="senha">Crie uma senha</label>
             <br />
-            <input class="input" type="password" id="senha" name="senha" placeholder="Crie uma senha" minlength="8" required/>
+            <input class="input" type="password" id="senha" name="senha" placeholder="Crie uma senha" minlength="" required/>
             <br />
             <label class="label" for="confirmasenha">Confirme a senha</label>
             <br />
-            <input class="input" type="password" id="confirmasenha" name="confirmasenha" placeholder="Confirme a senha" minlength="8" required/>
+            <input class="input" type="password" id="confirmasenha" name="confirmasenha" placeholder="Confirme a senha" minlength="" required/>
+            <br />                        
+              <label class="label" for="image">Selecione uma foto de Perfil</label>
+              <br />
+              <input class="" type="file" name="image" accept="image/*" />        
             <br />
             <br />
             <div id="cadastrar_div">

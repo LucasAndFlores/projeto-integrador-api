@@ -13,6 +13,7 @@ body {
   justify-content: center;
   font-family: Rokkitt;
   width: 100%;
+  margin-top: 30px;
 }
 
 header {
@@ -285,6 +286,10 @@ main article section p {
 }
 #form {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  
 }
 #bemvindo {
   font-size: 25px;
