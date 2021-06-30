@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { check, validationResult, body } = require('express-validator');
 
 const LoginController = require('../controllers/LoginController');
 
@@ -7,8 +8,18 @@ router.get('/recuperarsenha', (req, res) => {
     res.render('loginForgotPsw')
 });
 
+const validateRegister = [
+check('email')
+    .notEmpty().withMessage("Você deve preencher o email").bail()
+    .isEmail().withMessage("Você deve preencher um email válido"),
 
-router.post('/', LoginController.autenticaUsuario);
+check('senha')
+.notEmpty().withMessage("Você deve preencher a senha").bail()
+.isLength({ min: 8 }).withMessage("A senha deve ter pelo menos 8 caracteres")
+
+]
+
+router.post('/', validateRegister, LoginController.autenticaUsuario);
 
 
 

@@ -16,14 +16,14 @@ body {
 }
 
 header {
-  margin-top: 60px;
+  margin-top: 44px;
   display: flex;
   align-items: center;
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
   color: black;
-  margin-bottom: 62px;
+  margin-bottom: 36px;
 }
 
 header img {
@@ -85,7 +85,7 @@ main {
 main section {
   font-size: 30px;
   display: flex;
-  margin-bottom: 50px;
+  margin-bottom: 24px;
 }
 
 .img-hero {
@@ -143,7 +143,7 @@ main article section p {
   nav {
     flex-direction: column;
     font-size: 28px;
-    margin-top: 20px;
+    margin-top: 24px;
   }
 
   body {
@@ -284,7 +284,7 @@ main article section p {
   flex-direction: row;
   width: 1200px;
   height: auto;
-  margin-bottom: 90px;
+  margin-bottom: 20px;
   background: rgba(92, 186, 155, 0.92);
   padding: 50px;
 }

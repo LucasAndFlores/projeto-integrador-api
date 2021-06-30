@@ -15,7 +15,7 @@ check('sobrenome')
 
 check('email')
     .notEmpty().withMessage("Você deve preencher o email").bail()
-    .isEmail().withMessage("Deve preencher com um email válido"),
+    .isEmail().withMessage("Você deve preencher um email válido"),
 
 check('celular')
     .notEmpty().withMessage("Você deve preencher o celular").bail()
@@ -23,8 +23,8 @@ check('celular')
 
 check('dataNasc')
     .notEmpty().withMessage("Você deve preencher a data de nascimento").bail()
-    .isDate().withMessage("Você deve preencher uma data válida")
-    .isAfter().withMessage("Você deve preencher uma data válida"),
+    .isDate().withMessage("Você deve preencher uma data válida"),
+    /* .isAfter().withMessage("Você deve preencher uma nova data válida"), */
 
 check('senha')
     .notEmpty().withMessage("Você deve preencher a senha").bail()
@@ -43,12 +43,13 @@ check('confirmasenha')
 ];
 
 const IndexController = require('../controllers/IndexController');
+const { salvarForm } = require('../controllers/IndexController');
 
 router.get('/cartoes', IndexController.verCartoes);
 router.get('/transacoes', IndexController.verTransacoes);
 router.get('/entradas', IndexController.verEntradas);
 router.get('/objetivos', IndexController.verObjetivos);
 router.get('/configuracoes', IndexController.verConfiguracoes);
-router.post('/', upload.single('image'), validateRegister, IndexController.cadastraUsuario); 
+router.post('/', upload.single('image'), validateRegister, IndexController.cadastraUsuario, salvarForm); 
 
 module.exports = router;
