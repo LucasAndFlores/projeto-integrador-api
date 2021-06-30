@@ -54,6 +54,11 @@ nav ul {
   padding-left: 5%;
 }
 
+#altura-lista {
+  
+  list-style: disc;
+}
+
 #fundo-azul {
 
   background-color: #5CBA9B;
@@ -278,7 +283,7 @@ main article section p {
   display: flex;
   flex-direction: row;
   width: 1200px;
-  height: 800px;
+  height: auto;
   margin-bottom: 90px;
   background: rgba(92, 186, 155, 0.92);
   padding: 50px;

@@ -1,3 +1,6 @@
+const { check, validationResult, body } = require("express-validator");
+
+
 const IndexController = {
     verCartoes: (req, res) => {
         res.send('Ver cartões');
@@ -19,9 +22,18 @@ const IndexController = {
         res.render('configuracoes');
     },
     cadastraUsuario: (req, res) => {
-        console.log(req.body, req.file);
+        console.log(validationResult(req));
+        console.log(req.body, req.file);      
+        
+        let listaDeErrors = validationResult(req);
+
+        if(listaDeErrors.isEmpty()) {
         const {filename} = req.file; 
-        res.render('index', { image: `/storage/${filename}` });        
+        return res.render('index', { image: `/storage/${filename}` }); 
+    }   
+        else {
+            return res.render('cadastro', {errors:listaDeErrors.errors})           
+        }
     },
 }
 
