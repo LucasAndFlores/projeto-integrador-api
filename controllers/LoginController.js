@@ -1,6 +1,10 @@
 const { check, validationResult, body } = require("express-validator")
 
 const LoginController = {
+    acessoLogin: (req, res) => {
+        res.render('login');
+    },
+
     verRecuperarSenha: (req, res) => {
         return res.render('loginForgotPsw');
     },

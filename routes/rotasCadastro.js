@@ -3,9 +3,11 @@ const router = express.Router();
 
 const CadastroController = require('../controllers/CadastroController');
 
-router.post('/', (req, res) => {
-   res.render('cadastro');
-});
+
+
+router.get('/', CadastroController.acessoCadastro);
+router.post('/', CadastroController.cadastraUsuario);
+
 
 
 
