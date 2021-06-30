@@ -16,7 +16,12 @@ const IndexController = {
     },
 
     verConfiguracoes: (req, res) => {
-        res.send("Ver configurações");
+        res.render('configuracoes');
+    },
+    cadastraUsuario: (req, res) => {
+        console.log(req.body, req.file);
+        const {filename} = req.file; 
+        res.render('index', { image: `/storage/${filename}` });        
     },
 }
 

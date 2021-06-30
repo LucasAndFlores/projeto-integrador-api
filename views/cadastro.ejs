@@ -19,8 +19,7 @@
     <div id="caixa-cadastro">
       <div id="form-box">
         <div id="form">
-
-          <form action='/cadastro' method="POST">
+          <form action="/index" method="POST" enctype="multipart/form-data">
             <p id="bemvindo">Bem vindo ao cadastro da Economize+</p>
             <br />
             <label class="label" for="nome">Nome</label>
@@ -37,9 +36,7 @@
             <br />
             <label class="label" for="telefone">Telefone</label>
             <br />
-
-            <input class="input" type="tel" id="telefone" name="telefone" placeholder="Informe o seu telefone"  maxlength="11" required/>
-
+            <input class="input" type="tel" id="telefone" name="telefone" placeholder="Informe o seu telefone"  maxlength="11" required/> <!-- pattern="[0-9]{2}-[0-9]{5}-[0-9]{4}" -->
             <br />
             <label class="label" for="dataNasc">Data de Nascimento</label>
             <br />
@@ -47,12 +44,15 @@
             <br />
             <label class="label" for="senha">Crie uma senha</label>
             <br />
-            <input class="input" type="password" id="senha" name="senha" placeholder="Crie uma senha" required/>
+            <input class="input" type="password" id="senha" name="senha" placeholder="Crie uma senha" minlength="" required/>
             <br />
-
             <label class="label" for="confirmasenha">Confirme a senha</label>
             <br />
-            <input class="input" type="password" id="confirmasenha" name="confirmasenha" placeholder="Confirme a senha" required/>
+            <input class="input" type="password" id="confirmasenha" name="confirmasenha" placeholder="Confirme a senha" minlength="" required/>
+            <br />                        
+              <label class="label" for="image">Selecione uma foto de Perfil</label>
+              <br />
+              <input class="" type="file" name="image" accept="image/*" />        
             <br />
             <br />
             <div id="cadastrar_div">
@@ -67,3 +67,4 @@
     </div>
   </body>
 </html>
+
