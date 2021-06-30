@@ -10,7 +10,12 @@ const IndexController = {
     },
 
     verCartoes: (req, res) => {
-        res.send('Ver cartões');
+        res.render('cartoes')
+        //res.send('Ver cartões');
+    },
+    guardarCartao: (req, res)=>{
+        console.log(req.body);
+        res.redirect('/index')
     },
 
     verTransacoes: (req, res) => {
