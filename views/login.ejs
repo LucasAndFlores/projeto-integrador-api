@@ -19,8 +19,15 @@
             <div class="div-avatar">
                 <img src="img/user (1) 1.png" alt="">
             </div>
-
-
+            <% if(typeof(errors) != "undefined") { %> 
+                <p style="color: red;font-weight: bold; font-size: 24px;">Error</p>
+                <ul id="altura-lista" style="font-size: 20px;">
+                  <% errors.forEach((error) => { %>
+                    <li id="altura-lista"><%= error.msg %></li>
+                    <% }) %> 
+                </ul>  
+                <% } %> 
+                
             <form class="form-flex" action='/login' method="POST">
                 <div class="div-separaLogin">
                     <label for="email">Email</label>                

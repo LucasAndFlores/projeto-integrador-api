@@ -16,14 +16,14 @@ body {
 }
 
 header {
-    margin-top: 60px;
+    margin-top: 44px;
     display: flex;
     align-items: center;
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
     color: black;
-    margin-bottom: 62px;
+    margin-bottom: 24px;
     
 }
 
@@ -84,7 +84,7 @@ main {
 main section {
     font-size: 30px;
     display: flex;
-    margin-bottom: 50px;
+    margin-bottom: 24px;
 }
 
 .img-hero {
@@ -217,6 +217,7 @@ main article section p {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 20px;
 }
 
 .div-login {
