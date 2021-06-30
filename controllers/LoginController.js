@@ -1,3 +1,5 @@
+const { check, validationResult, body } = require("express-validator")
+
 const LoginController = {
     acessoLogin: (req, res) => {
         res.render('login');
@@ -8,18 +10,20 @@ const LoginController = {
     },
 
     autenticaUsuario: (req, res) => {
-        /* if (inputemail.value == "caique.bezerra@gmail.com" && inputsenha.value == "1234") {
-            alert("Acesso permitido");
-    
-          } else {
-    
-            alert("Acesso negado");
-    
-          }
+        console.log(validationResult(req));
+        console.log(req.body, req.file);      
+        /* res.redirect('/index'); */
+                
+        let listaDeErrors = validationResult(req);
 
-           let { email, senha } = req.body  */
-        res.redirect('/index');
-        console.log(req.body);
+        if(listaDeErrors.isEmpty()) {
+        const {filename} = req.file; 
+        return res.render('index'/* , { image: `/storage/${filename}` } */); 
+    }   
+        else {
+            return res.render('login', {errors:listaDeErrors.errors})           
+        }
+        
     },
 
 }

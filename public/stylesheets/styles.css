@@ -53,6 +53,16 @@ body {
 }
 
 .menuItem-active {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 12px;
+    padding: 12px 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
     background-color: #976EB0;
 }
 
@@ -285,7 +295,14 @@ body {
        position: absolute;
    }
 
-    
+   .menuItem:hover:not(.menuItem-active) {
+    background-color: #5CBA9B;
+    transition: 0.5s;
+    }
+
+    .menuItem-active {
+        background-color: #976EB0;
+    }  
 
 
 } 

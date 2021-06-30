@@ -1,4 +1,6 @@
+
 const CadastroController = {
+
     cadastraUsuario: (req, res) => {
         console.log(req.body);
         res.redirect('/index');
@@ -6,6 +8,8 @@ const CadastroController = {
     acessoCadastro: (req,res) => {
         res.render('cadastro')
     }
+
 }
+
 
 module.exports = CadastroController;
