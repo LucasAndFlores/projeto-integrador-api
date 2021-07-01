@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 8080;
 
 const rotasIndex = require('./routes/rotasIndex');
 const rotasHome = require('./routes/rotasHome');
@@ -19,11 +19,12 @@ app.use('/login', rotasLogin);
 app.use('/cadastro', rotasCadastro);
 app.use('/index', rotasIndex);
 
+app.listen(port, () => {
+    console.log('Server started on port: ' + port)
+});
+
 app.use((req, res) => {
     return res.status(404).render('notFound');
 })
 
-app.listen(port, () => {
-    console.log('Server started on port: ' + port)
-});
 
