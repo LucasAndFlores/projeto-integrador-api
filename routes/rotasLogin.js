@@ -4,6 +4,8 @@ const { check, validationResult, body } = require('express-validator');
 
 const LoginController = require('../controllers/LoginController');
 
+router.get('/', LoginController.acessoLogin);
+
 router.get('/recuperarsenha', (req, res) => {
     res.render('loginForgotPsw')
 });
@@ -21,6 +23,7 @@ check('senha')
 ]
 
 router.post('/', validateRegister, LoginController.autenticaUsuario);
+
 
 
 
