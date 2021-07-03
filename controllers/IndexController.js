@@ -27,7 +27,7 @@ const IndexController = {
     },
 
     verObjetivos: (req, res) => {
-        res.send("Ver objetivos");
+        res.render("objetivos_v1");
     },
 
     verConfiguracoes: (req, res) => {
