@@ -19,7 +19,7 @@ const IndexController = {
     },
 
     verTransacoes: (req, res) => {
-        res.send("Ver transações");
+        res.render('transacoes');
     },
 
     verEntradas: (req, res) => {
