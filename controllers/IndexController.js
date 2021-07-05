@@ -1,11 +1,21 @@
 const IndexController = {
     verCartoes: (req, res) => {
+        //let dadosCartao= {
+            //limite: req.body.limite,
+            //numero: req.body.cartaoDigitos,
+            //bandeira: req.body.cartaoNome,
+            //pagamento: req.body.dataPagamento,
+            //tipo: req.body.tipoCartao
+        //}
         res.render('cartoes')
-        //res.send('Ver cartões');
+        
+    },
+    cadastraCartoes: (req, res) =>{
+        res.render('cadastroCartoes')
     },
     guardarCartao: (req, res)=>{
         console.log(req.body);
-        res.redirect('/index')
+        res.redirect('/index/cartoes')
     },
 
     verTransacoes: (req, res) => {
