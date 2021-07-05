@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@100&display=swap"
       rel="stylesheet"
     />
-    <title>Cadastro de cartões</title>
+    <title>Cartões</title>
 </head>
 <body>
     <div class="container-master">
@@ -51,53 +51,21 @@
                 </button>
             </div>
         </div>
-    <div id= "container">
-        <div id="container-form">
-            <div style="text-align: center; margin-bottom: 18px;">
-                <h1>Cadastro de cartões</h1>
-            </div>
-            <div id="cartoes-form">
-                <form action="/index/cartoes" method="POST">
-                    <div class="input-cartoes">
-                    <label class= "label" for="cartao">Cartão</label>
-                    <br>
-                    <input class="input" type="text" id="cartao-nome" name="cartao-nome" placeholder="Informe a bandeira do cartão." required/>
-                    </div>
-                    <br>
-                     <div class="input-cartoes">
-                    <label class= "label" for="ultimos-digitos">Últimos 4 dígitos:</label>
-                    <br>
-                    <input class="input" type="text" id="cartao-digitos" name="cartao-digitos" placeholder="Digite os 4 últimos dígitos do seu cartão" required/>
-                    </div>
-                    <br>
-                    <div class="input-cartoes">
-                        <label class="label" for="limite">Limite</label>
-                        <br>
-                        <input class="input" type="text" id="limite" name="limite" placeholder="limite do cartão" required/>
-                    </div>
-                    <br>
-                    <div class="input-cartoes">
-                        <label class="label" for="data-pagamento">Data de pagamento</label>
-                        <br>
-                        <input class="input" type="date" id="data-pagamento" name="data-pagamento" placeholder="data de pagamento"  />
-                    </div>
-                    <br>
-                    <div class="input-cartoes">
-                        <label class= "label" for="tipo">Tipo</label>
-                            <select name="tipo-cartao" style="width: 100;
-                            height: 41.69px;
-                            font-size: 16px;
-                            padding-left: 16px;">
-                                <option value="credito">crédito</option>
-                                <option value="debito">débito</option>
-                            </select>
-                    </div>
-                    <br>
-                    <div id="button">
-                    <button type="submit" id="fundo-azul">Cadastrar</button>   
-                    </div>
-                </form>
-            </div>
+    <div id= "container-direita">
+        <h1>Meus cartões</h1>
+        <div id="cartao-e-info">
+          <div id="cartao">
+            <p class="texto-cartao">Débito/Crédito</p>
+            <p id="numero-cartao">****  ****  ****  ****</p>
+            <p id="nome-no-cartao">Nome e Sobrenome</p>
+          </div>
+          <div id="info-cartao">
+            <p>Limite: R$ 10000</p>
+            <p>Vencimento da fatura: dd/mm/aa </p>
+          </div>
+        </div>
+        <div id="cadastrar-cartao">
+            <h2>Ainda não tem cartões cadastrados? <a id="cadastro-link"onclick="location.href='/index/cadastro-cartoes'">Cadastre aqui.</a></h2>
         </div>
     </div>
 </div>
