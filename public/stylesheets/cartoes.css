@@ -363,6 +363,7 @@ body {
     flex-direction: row;
     background-color: #E5E5E5;
     width: 100vw;
+    height: 100vh;
 }
 
 .columnOne {
@@ -565,6 +566,7 @@ body {
         /*align-items: flex-start;      
         /* margin-bottom: 16px; */
         /* position: relative;   */   
+        
     }
 
     .menuItem {
@@ -635,22 +637,14 @@ body {
    #container-form{
      width: 100vw;
    }
-   #container{
-     margin-left: 0%;
-   }
-    
-
-
-} 
-
-  #container{
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      margin-left:15%;
+   #cartao-e-info{
+    flex-direction: column;
   }
+  #info-cartao{
+    border-left: none;
+    padding-left:0%;
+  }
+}
 
   #container-form{
       display: flex;
@@ -676,17 +670,71 @@ body {
     margin-left: 10px;
   }
   @media (max-width: 450px){
-    .input-cartoes{
-      margin-left: 5%;
+    #cartao-e-info{
+      flex-direction: column;
     }
-    #container-form{
-      width: 100vw;
-      padding: 0%;
+    #info-cartao{
+      border-left: none;
+      padding-left:0%;
     }
-    #container{
-      margin-left: 0%;
-    }
-    #cartoes-form{
-      margin-left: 0%;
-    }
+  }
+
+  #container-direita{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin-top: 7%;
+    margin-left: 8%;
+}
+  #cartao{
+    Width:311px;
+    Height:185px;
+    border-radius:20px;
+    background-image: linear-gradient(to bottom,rgb(154, 210, 214), purple);
+    margin-right: 50px;
+  }
+  
+  .texto-cartao{
+    font-size: 1rem;
+    color: white;
+    margin-top: 24px;
+    margin-left: 24px;
+  }
+  #numero-cartao{
+    font-size: 1rem;
+    color: white;
+    margin-left: 24px;
+    margin-top: 60px;
+  }
+  #nome-no-cartao{
+    font-size: 1rem;
+    color: white;
+    margin-left: 24px;
+    margin-top:20px ;
+  }
+  #cartao-e-info{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  #info-cartao{
+    border-left: 1px solid black ;
+    padding-left: 20px;
+    line-height: 30px;
+  }
+  h2{
+    font-size: 1rem;
+  }
+  #cadastrar-cartao{
+    position: absolute;
+    bottom: 5%;
+  }
+  #cadastro-link{
+    cursor: pointer; 
+    font-weight: bolder
+  }
+  a:hover{
+    color: rgb(51, 150, 153);
   }
