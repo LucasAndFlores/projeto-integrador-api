@@ -1,6 +1,8 @@
 const { check, validationResult, body } = require("express-validator");
 const fs = require('fs');
 const path = require('path');
+const bcrypt = require('bcrypt'); // cripto de senha
+const router = require("../routes/rotasIndex");
 
 let usuarioJson = path.join("usuarios.json");
 
@@ -13,7 +15,7 @@ const IndexController = {
         res.render('cartoes')
         //res.send('Ver cartões');
     },
-    guardarCartao: (req, res)=>{
+    guardarCartao: (req, res) => {
         console.log(req.body);
         res.redirect('/index')
     },
@@ -36,30 +38,51 @@ const IndexController = {
 
     cadastraUsuario: (req, res) => {
         console.log(validationResult(req));
-        console.log(req.body, req.file);   
-/*         let {nome, sobrenome, email, celular, dataNasc, senha, confirmasenha} = req.body;
-        let usuario = JSON.stringify({nome, sobrenome, email, celular, dataNasc, senha, confirmasenha});
+        console.log(req.body, req.file);
 
-        fs.writeFileSync(usuarioJson, usuario, {encoding:'utf-8'});  */
-        /* res.send("Usuário cadastrado")  */  
-        
+
         let listaDeErrors = validationResult(req);
 
-        if(listaDeErrors.isEmpty()) {
-        const {filename} = req.file;
+        if (listaDeErrors.isEmpty()) {
 
-        return res.render('index', { image: `/storage/${filename}` }); 
-    }   
+            if (req.file) {
+                const { filename } = req.file;
+
+                return res.render('index', { image: `/storage/${filename}` });
+            } else {
+                let { nome, sobrenome, email, celular, dataNasc, senha } = req.body;
+                let usuario = JSON.stringify({ nome, sobrenome, email, celular, dataNasc, senha });
+
+
+                if (fs.readFileSync(usuarioJson).length === 0) {
+                    let usuarios = []
+                    usuarios.push(usuario);
+
+                    fs.writeFileSync(usuarioJson, JSON.stringify(usuarios), { encoding: 'utf-8' });
+                    res.send("Usuario cadastrado com sucesso!");
+
+                } else {
+                    let usuarios = []
+
+                    usuarios = JSON.parse(fs.readFileSync(usuarioJson));
+
+                    usuarios.push(usuario);
+
+                    fs.writeFileSync(usuarioJson, JSON.stringify(usuarios), { encoding: 'utf-8' });
+                    res.send("Usuario cadastrado com sucesso!");
+
+
+                }
+
+            }
+        }
         else {
-            return res.render('cadastro', {errors:listaDeErrors.errors})           
+            return res.render('cadastro', { errors: listaDeErrors.errors })
         }
     },
 
     salvarForm: (req, res) => {
-        let {nome, sobrenome, email, celular, dataNasc, senha, confirmasenha} = req.body;
-        let usuario = JSON.stringify({nome, sobrenome, email, celular, dataNasc, senha, confirmasenha});
 
-        fs.writeFileSync(usuarioJson, usuario, {encoding:'utf-8'});
     },
 
 }
