@@ -8,6 +8,11 @@ router.get('/recuperarsenha', (req, res) => {
     res.render('loginForgotPsw')
 });
 
+router.get('/', (req, res) => {
+    res.render('/login')
+});
+
+
 const validateRegister = [
 check('email')
     .notEmpty().withMessage("Você deve preencher o email").bail()

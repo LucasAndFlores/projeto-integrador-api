@@ -5,8 +5,17 @@ const path = require('path');
 let usuarioJson = path.join("usuarios.json");
 
 const IndexController = {
+    AcessoHome: (req, res) => {
+        res.render('index');
+    },
+
     verCartoes: (req, res) => {
-        res.send('Ver cartões');
+        res.render('cartoes')
+        //res.send('Ver cartões');
+    },
+    guardarCartao: (req, res)=>{
+        console.log(req.body);
+        res.redirect('/index')
     },
 
     verTransacoes: (req, res) => {
@@ -39,10 +48,10 @@ const IndexController = {
         if(listaDeErrors.isEmpty()) {
         const {filename} = req.file;
 
-        return res.render('index', { image: `/storage/${filename}` }); 
+         res.render('index', { image: `/storage/${filename}` }); 
     }   
         else {
-            return res.render('cadastro', {errors:listaDeErrors.errors})           
+             res.render('cadastro', {errors:listaDeErrors.errors})           
         }
     },
 
