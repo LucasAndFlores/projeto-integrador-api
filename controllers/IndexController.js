@@ -7,6 +7,7 @@ const router = require("../routes/rotasIndex");
 let usuarioJson = path.join("usuarios.json");
 
 const transacoes = [];
+const cartoescadastrados = [];
 
 const IndexController = {
     AcessoHome: (req, res) => {
@@ -14,22 +15,25 @@ const IndexController = {
     },
 
     verCartoes: (req, res) => {
-        //let dadosCartao= {
-            //limite: req.body.limite,
-            //numero: req.body.cartaoDigitos,
-            //bandeira: req.body.cartaoNome,
-            //pagamento: req.body.dataPagamento,
-            //tipo: req.body.tipoCartao
-        //}
-        res.render('cartoes')
+        res.render('cartoes', {cartao: cartoescadastrados})
+        
         
     },
     cadastraCartoes: (req, res) =>{
         res.render('cadastroCartoes')
     },
     guardarCartao: (req, res) => {
-        console.log(req.body);
-        res.redirect('/index/cartoes')
+        let {cartaoNome, cartaoDigitos, limite, dataPagamento, credito, debito} = req.body
+        let cadastrodecartao = {
+            cartaoNome,
+            cartaoDigitos, 
+            limite,
+            dataPagamento,
+            credito,
+            debito,
+        }
+        cartoescadastrados.push(cadastrodecartao)
+        res.render('cartoes', {cartao: cartoescadastrados})
     },
 
     CadastrarTransacao: (req, res) => {
