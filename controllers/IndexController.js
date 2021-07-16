@@ -6,32 +6,50 @@ const router = require("../routes/rotasIndex");
 
 let usuarioJson = path.join("usuarios.json");
 
+const transacoes = [];
+const cartoescadastrados = [];
+
 const IndexController = {
     AcessoHome: (req, res) => {
         res.render('index');
     },
 
     verCartoes: (req, res) => {
-        //let dadosCartao= {
-            //limite: req.body.limite,
-            //numero: req.body.cartaoDigitos,
-            //bandeira: req.body.cartaoNome,
-            //pagamento: req.body.dataPagamento,
-            //tipo: req.body.tipoCartao
-        //}
-        res.render('cartoes')
+        res.render('cartoes', {cartao: cartoescadastrados})
+        
         
     },
     cadastraCartoes: (req, res) =>{
         res.render('cadastroCartoes')
     },
     guardarCartao: (req, res) => {
-        console.log(req.body);
-        res.redirect('/index/cartoes')
+        let {cartaoNome, cartaoDigitos, limite, dataPagamento, credito, debito} = req.body
+        let cadastrodecartao = {
+            cartaoNome,
+            cartaoDigitos, 
+            limite,
+            dataPagamento,
+            credito,
+            debito,
+        }
+        cartoescadastrados.push(cadastrodecartao)
+        res.render('cartoes', {cartao: cartoescadastrados})
+    },
+
+    CadastrarTransacao: (req, res) => {
+        let { nomedespesa, tipodespesa, datadespesa, valordespesa } = req.body;
+        let trancasaonova = {
+            nomedespesa,
+            tipodespesa,
+            datadespesa,
+            valordespesa,
+        }; 
+        transacoes.push(trancasaonova);
+        res.render('transacoes', {transacoes: transacoes});
     },
 
     verTransacoes: (req, res) => {
-        res.render('transacoes');
+        res.render('transacoes', {transacoes: transacoes});
     },
 
     verEntradas: (req, res) => {
