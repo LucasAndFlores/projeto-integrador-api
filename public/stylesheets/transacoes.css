@@ -63,15 +63,49 @@ h2 {
 .columnTwo {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 80%;
     height: 100%;
     margin-top: 35px; 
+    align-items: center;
     
 }
 
 .margin-resumo {
     margin-bottom: 40px;
-    margin-left: 45px; 
+    text-align: center;
+}
+
+.registroDespesas {
+    background-color: white;
+    width: 80%;
+    height: 15vh;
+    margin: 10px 0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.estiloInput{
+    margin: 0 10px;
+    display: flex;
+    line-height: 2;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 700;
+}
+
+.botaoPlus {
+    width: 6%;
+    height: 10vh;
+    border: none;
+    border-radius: 20px;
+}
+
+.botaoPlus:hover {
+    background-color: #5CBA9B;
+    transition: 0.5s;
 }
 
 .margin-historico {
@@ -79,6 +113,7 @@ h2 {
 }
 
 .transactionHistory {
+    width: 80%;
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -122,7 +157,6 @@ tbody tr {
     flex-direction: column;
     width: 35%;
     height: 100vh;
-    margin-top: 9.5%;
 }
 
 .objectives {
@@ -449,37 +483,6 @@ tbody tr {
     margin: 0px;
 }
 
-/* .img-columnthree {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 14px;
-    width: 100%;   
-} */
-
-#img-1 {
-    height: 247px;
-}
-
-#img-2 {
-    height: 289px;
-}
-
-#img-3 {
-    height: 258px;
-}
-
-.info-padding {
-    margin-left: 20px;
-}
-
-.navstyle{
-    display: none;
-}
-
-.menuItem:hover:not(.menuItem-active) {
-    background-color: #5CBA9B;
-    transition: 0.5s;
-}
 
 .menuItem-active {
     display: flex;
@@ -496,217 +499,3 @@ tbody tr {
 }
 
 
-@media (max-width: 1279px) {
-    
-} 
-
-@media (max-width: 768px) {
-    .columnTwo {
-        width: 50%;
-        }
-} 
-    
-@media (max-width: 480px) {
-    .columnOne {
-        display: flex;
-        flex-direction: column;
-        width: 100vw;
-        height: auto;     
-        align-items: flex-start;      
-        /* margin-bottom: 16px; */
-        /* position: relative;   */   
-    }
-
-    .menuItem {
-        padding: 0px 4px;
-        margin-bottom: 0px;
-        background-color: #EFF7E1;
-        border-radius: 55px;
-    }
-
-    .menuText {
-        margin: 0px;
-        
-        
-    }
-
-    button img {
-        display: none;
-    }
-
-    .menu {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-around;
-        background-color: #EFF7E1;
-        height: 24px;
-        border-radius: 55px;
-    }
-
-    .columnTwo {
-        width: 100vw;
-        margin-top: 16px;
-    }
-
-    .margin-resumo {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-bottom: 40px;
-        margin-left: 0px;
-        align-items: center;
-    }
-
-    .container-master {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .columnThree {
-        width: 100vw;
-    }
-
-    .loginModal {
-        position: absolute;
-        top: 65px;
-        right: 40px;
-    }
-
-    .img-header {
-        display: flex;
-        margin-left: 24px;
-    }
-
-    .navstyle {
-        display: none;
-    }
-
-
-
-    
-
-
-} 
-@media (max-width: 425px) {
-    h2, h3, h4 {
-        font-size: 16px;
-    }
-
-    p {
-        font-size: 16px;
-    }
-
-    .columnOne {
-        display: flex;
-        flex-direction: column;
-        width: 100vw;
-        height: auto;     
-        align-items: flex-start;      
-        /* margin-bottom: 16px; */
-        /* position: relative;   */   
-    }
-
-    .img-header {
-        align-items: center;
-        display: flex;
-        margin-left: 24px;
-        flex-direction: row;
-        
-    }
-
-    .navstyle {
-        margin-left: 50px;
-        width: 2em
-    }
-
-    .menuItem {
-        padding: 0px 4px;
-        margin-bottom: 0px;
-        background-color: #EFF7E1;
-        border-radius: 55px;
-    }
-
-    .menuText {
-        margin: 0px;
-        
-        
-    }
-
-    button img {
-        display: none;
-    }
-
-    .menu {
-        display: none;
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-around;
-        background-color: #EFF7E1;
-        height: 24px;
-        border-radius: 55px;
-    }
-
-    .columnTwo {
-        width: 100vw;
-        margin-top: 16px;
-    }
-
-    .transactionHistory {
-        display: none;
-    }
-
-    .tabelaGastos {
-        width: 100%;
-        height: 340px;
-        text-align: left;
-        border-collapse: collapse;
-        font-size: 14px;
-    }
-
-    .margin-resumo {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-bottom: 40px;
-        margin-left: 0px;
-        align-items: center;
-    }
-
-    .container-master {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .columnThree {
-        width: 100vw;
-        padding: 2px;
-    }
-
-    .columnthreeData {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        /* margin: 5px; */
-        margin-left: 10px;
-        position: absolute;
-
-    }
-
-    .modal-row{
-    }
-
-    .loginModal {
-        position: absolute;
-        top: 65px;
-        right: 40px;
-    }
-
-  
-
-
-
-    
-
-
-} 

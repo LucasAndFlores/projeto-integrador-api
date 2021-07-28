@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/transacoes.css">
+    <link rel="stylesheet" href="/stylesheets/partials-menulateral.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>Economize + | Transações </title>
+</head>
+
+<body>
+    <div class="container-master">
+        <%- include('./partials/menuLateral') %>
+        <div class="columnTwo">
+            <div class="margin-resumo">
+                <h1> Cadastre já suas despesas </h1>
+                <h4>Aqui você vai cadastrar tudo que gasta, para controlar o seu gasto.</h4>
+            </div>
+            <form action="/index/transacoes" method="POST" class="registroDespesas">
+                <div class="estiloInput">
+                    <label for="nomedespesa"> Loja </label>
+                    <input type="text" name="nomedespesa" id="nomedespesa" placeholder="Digite aqui onde você comprou">
+                </div>
+                <div class="estiloInput">
+                    <label for="tipodespesa"> Tipo de despesa </label>
+                    <input type="text" name="tipodespesa" id="tipodespesa" placeholder="Digite aqui qual o tipo despesa">
+                </div>
+                <div class="estiloInput">
+                    <label for="datadespesa"> Data de despesa </label>
+                    <input type="date" name="datadespesa" id="datadespesa" placeholder="Digite aqui quando">
+                </div>
+                <div class="estiloInput">
+                    <label for="valordespesa"> Valor da despesa </label>
+                    <input type="number" name="valordespesa" id="valordespesa" placeholder="Digite aqui quanto foi">
+                </div>
+                <button type="submit" class="botaoPlus">
+                    <img src="/img/Abstract_Add_1 copy.png" alt="adicionarIcone" width="40px" height="40px">
+                </button>
+            </form>
+            <div class="transactionHistory">
+                <div class="margin-historico">
+                    <h2>Histórico de transações</h2>
+                </div>
+                <div class="paymentHistory">
+                    <table class="tabelaGastos">
+                        <thead>
+                            <tr>
+                                <th> Loja </th>
+                                <th> Tipo </th>
+                                <th> Data </th>
+                                <th> Total </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% transacoes.forEach(despesa => { %>
+                            <tr>         
+                                  <td> <%= despesa.nomedespesa %>  </td>
+                                  <td> <%= despesa.tipodespesa %>  </td>
+                                  <td> <%= despesa.datadespesa %>  </td>
+                                  <td> R$ <%= despesa.valordespesa %>  </td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        
+    </div>
+</body>
+
+</html>

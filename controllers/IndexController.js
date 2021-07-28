@@ -1,8 +1,18 @@
 const { check, validationResult, body } = require("express-validator");
 const fs = require('fs');
 const path = require('path');
+const bcrypt = require('bcrypt'); // cripto de senha
+const router = require("../routes/rotasIndex");
 
+const { Usuario, Transacoes } = require('../models');
+// const config = require('../config/database')
+// const Sequelize = require('sequelize');
+// const Op = Sequelize.Op;
+ 
 let usuarioJson = path.join("usuarios.json");
+
+const transacoes = [];
+const cartoescadastrados = [];
 
 const IndexController = {
     AcessoHome: (req, res) => {
@@ -10,16 +20,53 @@ const IndexController = {
     },
 
     verCartoes: (req, res) => {
-        res.render('cartoes')
-        //res.send('Ver cartões');
+        res.render('cartoes', {cartao: cartoescadastrados})
+        
+        
     },
-    guardarCartao: (req, res)=>{
-        console.log(req.body);
-        res.redirect('/index')
+    cadastraCartoes: (req, res) =>{
+        res.render('cadastroCartoes')
+    },
+    guardarCartao: (req, res) => {
+        let {cartaoNome, cartaoDigitos, limite, dataPagamento, credito, debito} = req.body
+        let cadastrodecartao = {
+            cartaoNome,
+            cartaoDigitos, 
+            limite,
+            dataPagamento,
+            credito,
+            debito,
+        }
+        cartoescadastrados.push(cadastrodecartao)
+        res.render('cartoes', {cartao: cartoescadastrados})
+    },
+
+    // CadastrarTransacao: (req, res) => {
+    //     let { nomedespesa, tipodespesa, datadespesa, valordespesa } = req.body;
+    //     let trancasaonova = {
+    //         nomedespesa,
+    //         tipodespesa,
+    //         datadespesa,
+    //         valordespesa,
+    //     }; 
+    //     ;
+    //     res.render('transacoes', {transacoes: transacoes});
+    // },
+
+    CadastrarTransacaoSequelize: async (req, res) => {
+        let { nomedespesa, tipodespesa, datadespesa, valordespesa } = req.body;
+        const inserir = await Transacoes.create({
+                    loja: nomedespesa,
+                    data_da_transacao: datadespesa,
+                    valor_da_transacao: valordespesa,
+                    meio_de_pagamento: tipodespesa
+                })
+
+                return res.send("Adicionado com sucesso")
     },
 
     verTransacoes: (req, res) => {
-        res.send("Ver transações");
+        res.render('transacoes', {transacoes: transacoes});
     },
 
     verEntradas: (req, res) => {
@@ -27,7 +74,7 @@ const IndexController = {
     },
 
     verObjetivos: (req, res) => {
-        res.send("Ver objetivos");
+        res.render("objetivos_v1");
     },
 
     verConfiguracoes: (req, res) => {
@@ -35,33 +82,67 @@ const IndexController = {
     },
 
     cadastraUsuario: (req, res) => {
-        console.log(validationResult(req));
-        console.log(req.body, req.file);   
-/*         let {nome, sobrenome, email, celular, dataNasc, senha, confirmasenha} = req.body;
-        let usuario = JSON.stringify({nome, sobrenome, email, celular, dataNasc, senha, confirmasenha});
 
-        fs.writeFileSync(usuarioJson, usuario, {encoding:'utf-8'});  */
-        /* res.send("Usuário cadastrado")  */  
-        
         let listaDeErrors = validationResult(req);
 
-        if(listaDeErrors.isEmpty()) {
-        const {filename} = req.file;
+        if (listaDeErrors.isEmpty()) {
 
-        return res.render('index', { image: `/storage/${filename}` }); 
-    }   
-        else {
-            return res.render('cadastro', {errors:listaDeErrors.errors})           
+            if (req.file) {
+                const { filename } = req.file;
+
+                return res.render('index', { image: `/storage/${filename}` });
+            } else {
+                let { nome, sobrenome, email, celular, dataNasc, senha } = req.body;
+                let usuario = JSON.stringify({ nome, sobrenome, email, celular, dataNasc, senha });
+
+
+                if (fs.readFileSync(usuarioJson).length === 0) {
+                    let usuarios = []
+                    usuarios.push(usuario);
+
+                    fs.writeFileSync(usuarioJson, JSON.stringify(usuarios), { encoding: 'utf-8' });
+                    res.send("Usuario cadastrado com sucesso!");
+
+                } else {
+                    let usuarios = []
+
+                    usuarios = JSON.parse(fs.readFileSync(usuarioJson));
+
+                    usuarios.push(usuario);
+
+                    fs.writeFileSync(usuarioJson, JSON.stringify(usuarios), { encoding: 'utf-8' });
+                    res.send("Usuario cadastrado com sucesso!");
+
+
+                }
+
+            }
         }
-    },
+        else {
+            return res.render('cadastro', { errors: listaDeErrors.errors })
+        }
+    },  
+
+    // testeSequilize: async (req, res) => {
+    //     const { nome, sobrenome, email, celular, dataNasc, senha } = req.body;
+    //       const inserir = await Usuario.create({
+    //         nome: nome,
+    //         sobrenome: sobrenome,
+    //         email: email,
+    //         celular: celular,
+    //         data_de_nascimento: dataNasc,
+    //         senha: senha
+    //     })
+    //     console.log(inserir)
+    //     return res.render("Adicionado com sucesso")
+    // },
 
     salvarForm: (req, res) => {
-        let {nome, sobrenome, email, celular, dataNasc, senha, confirmasenha} = req.body;
-        let usuario = JSON.stringify({nome, sobrenome, email, celular, dataNasc, senha, confirmasenha});
 
-        fs.writeFileSync(usuarioJson, usuario, {encoding:'utf-8'});
     },
 
 }
+
+
 
 module.exports = IndexController
