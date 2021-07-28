@@ -4,6 +4,11 @@ const path = require('path');
 const bcrypt = require('bcrypt'); // cripto de senha
 const router = require("../routes/rotasIndex");
 
+const { Usuario, Transacoes } = require('../models');
+// const config = require('../config/database')
+// const Sequelize = require('sequelize');
+// const Op = Sequelize.Op;
+ 
 let usuarioJson = path.join("usuarios.json");
 
 const transacoes = [];
@@ -36,16 +41,28 @@ const IndexController = {
         res.render('cartoes', {cartao: cartoescadastrados})
     },
 
-    CadastrarTransacao: (req, res) => {
+    // CadastrarTransacao: (req, res) => {
+    //     let { nomedespesa, tipodespesa, datadespesa, valordespesa } = req.body;
+    //     let trancasaonova = {
+    //         nomedespesa,
+    //         tipodespesa,
+    //         datadespesa,
+    //         valordespesa,
+    //     }; 
+    //     ;
+    //     res.render('transacoes', {transacoes: transacoes});
+    // },
+
+    CadastrarTransacaoSequelize: async (req, res) => {
         let { nomedespesa, tipodespesa, datadespesa, valordespesa } = req.body;
-        let trancasaonova = {
-            nomedespesa,
-            tipodespesa,
-            datadespesa,
-            valordespesa,
-        }; 
-        transacoes.push(trancasaonova);
-        res.render('transacoes', {transacoes: transacoes});
+        const inserir = await Transacoes.create({
+                    loja: nomedespesa,
+                    data_da_transacao: datadespesa,
+                    valor_da_transacao: valordespesa,
+                    meio_de_pagamento: tipodespesa
+                })
+
+                return res.send("Adicionado com sucesso")
     },
 
     verTransacoes: (req, res) => {
@@ -65,9 +82,6 @@ const IndexController = {
     },
 
     cadastraUsuario: (req, res) => {
-        console.log(validationResult(req));
-        console.log(req.body, req.file);
-
 
         let listaDeErrors = validationResult(req);
 
@@ -107,12 +121,28 @@ const IndexController = {
         else {
             return res.render('cadastro', { errors: listaDeErrors.errors })
         }
-    },
+    },  
+
+    // testeSequilize: async (req, res) => {
+    //     const { nome, sobrenome, email, celular, dataNasc, senha } = req.body;
+    //       const inserir = await Usuario.create({
+    //         nome: nome,
+    //         sobrenome: sobrenome,
+    //         email: email,
+    //         celular: celular,
+    //         data_de_nascimento: dataNasc,
+    //         senha: senha
+    //     })
+    //     console.log(inserir)
+    //     return res.render("Adicionado com sucesso")
+    // },
 
     salvarForm: (req, res) => {
 
     },
 
 }
+
+
 
 module.exports = IndexController
