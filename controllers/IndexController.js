@@ -16,10 +16,26 @@ const IndexController = {
     guardarCartao: (req, res)=>{
         console.log(req.body);
         res.redirect('/index')
+        //let dadosCartao= {
+            //limite: req.body.limite,
+            //numero: req.body.cartaoDigitos,
+            //bandeira: req.body.cartaoNome,
+            //pagamento: req.body.dataPagamento,
+            //tipo: req.body.tipoCartao
+        //}
+        res.render('cartoes')
+        
+    },
+    cadastraCartoes: (req, res) =>{
+        res.render('cadastroCartoes')
+    },
+    guardarCartao: (req, res)=>{
+        console.log(req.body);
+        res.redirect('/index/cartoes')
     },
 
     verTransacoes: (req, res) => {
-        res.send("Ver transações");
+        res.render('transacoes');
     },
 
     verEntradas: (req, res) => {
@@ -27,7 +43,7 @@ const IndexController = {
     },
 
     verObjetivos: (req, res) => {
-        res.send("Ver objetivos");
+        res.render("objetivos_v1");
     },
 
     verConfiguracoes: (req, res) => {

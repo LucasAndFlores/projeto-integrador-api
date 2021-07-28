@@ -45,7 +45,11 @@ check('confirmasenha')
 const IndexController = require('../controllers/IndexController');
 const { salvarForm } = require('../controllers/IndexController');
 
+router.get('/', IndexController.AcessoHome);
+
 router.get('/cartoes', IndexController.verCartoes);
+router.get('/cadastro-cartoes',IndexController.cadastraCartoes);
+router.post('/cadastro-cartoes', IndexController.guardarCartao);
 router.get('/transacoes', IndexController.verTransacoes);
 router.get('/entradas', IndexController.verEntradas);
 router.get('/objetivos', IndexController.verObjetivos);

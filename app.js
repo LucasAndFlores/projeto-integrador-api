@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 8080;
 
 const rotasIndex = require('./routes/rotasIndex');
 const rotasHome = require('./routes/rotasHome');
@@ -13,20 +13,18 @@ app.use('/storage', express.static('storage'))
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
-app.get('/', (req, res) => {res.render ('home');});
-app.get('/login', (req, res) => {res.render ('login');});
-app.get('/cadastro', (req, res) => {res.render ('cadastro');});
-app.get('/index', (req, res) => {res.render ('index');});
 
 app.use('/', rotasHome);
 app.use('/login', rotasLogin);
 app.use('/cadastro', rotasCadastro);
 app.use('/index', rotasIndex);
-app.use((req, res) => {
-    return res.status(404).render('notFound');
-})
 
 app.listen(port, () => {
     console.log('Server started on port: ' + port)
 });
+
+app.use((req, res) => {
+    return res.status(404).render('notFound');
+})
+
 
