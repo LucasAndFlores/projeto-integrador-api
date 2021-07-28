@@ -16,7 +16,7 @@ h2 {
     font-size: 20px;
 }
 
-.columnOne {
+.menu-geral {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,12 +24,12 @@ h2 {
     margin-top: 20px;
 }
 
-.menu {
+.menu-modulos {
     display: flex;
     flex-direction: column;
 }
 
-.menuItem {
+.item-do-menu {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -43,12 +43,7 @@ h2 {
     font-size: 14px;
 }
 
-.menuItem:hover {
-    background-color: #5CBA9B;
-    transition: 0.5s;
-}
-
-.menuText {
+.texto-do-menu {
     font-size: 14px;
     margin-left: 18px;
     text-align: left;

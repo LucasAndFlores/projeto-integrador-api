@@ -17,15 +17,15 @@ h2 {
 }
 
 
-.modal-row {
+.modal-static {
     display: flex;
     width: 100%;
     justify-content: flex-end;
     align-items: center;
-    
+    margin-left: 10px;
 }
 
-.loginModal {
+.loginModal-2 {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -33,13 +33,13 @@ h2 {
     margin-left: 10px;
 }
 
-.userInformation {
+.userInformation2 {
     display: flex;
     flex-direction: column;    
     margin-left: 10px;
 }
 
-.info-padding {
+.info-static {
     margin-left: 20px;
 }
 
