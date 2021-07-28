@@ -3,15 +3,16 @@ const router = express.Router();
 const multer = require('multer');
 const upload = multer({ dest: 'storage' });
 const { check, validationResult, body } = require('express-validator');
+const Usuarios = require('../models');
 
 const validateRegister = [ 
 check('nome')
     .notEmpty().withMessage("Você deve preencher o nome").bail()
-    .isLength({ min: 5 }).withMessage("O nome deve ter pelo menos 5 caracteres"),
+    .isLength({ min: 3 }).withMessage("O nome deve ter pelo menos 5 caracteres"),
 
 check('sobrenome')
     .notEmpty().withMessage("Você deve preencher o sobrenome").bail()
-    .isLength({ min: 5 }).withMessage("O sobrenome deve ter pelo menos 5 caracteres"),
+    .isLength({ min: 3 }).withMessage("O sobrenome deve ter pelo menos 5 caracteres"),
 
 check('email')
     .notEmpty().withMessage("Você deve preencher o email").bail()
@@ -35,7 +36,8 @@ check('senha')
 
 check('confirmasenha')
     .notEmpty().withMessage("Você deve preencher o confirmar a senha").bail()
-    .isLength({ min: 8 }).withMessage("A senha deve ter pelo menos 8 caracteres")
+    .isLength({ min: 8 }).withMessage("A senha deve ter pelo menos 8 caracteres"),
+
 /*     .isStrongPassword({ minLength: 8, minLowercase: 1, minUppercase: 1, minNumbers: 1, minSymbols: 1, 
         returnScore: true, pointsPerUnique: 1, pointsPerRepeat: 0.5, pointsForContainingLower: 10, 
         pointsForContainingUpper: 10, pointsForContainingNumber: 10, pointsForContainingSymbol: 10 }), */
@@ -51,6 +53,7 @@ router.get('/cartoes', IndexController.verCartoes);
 router.get('/cadastro-cartoes',IndexController.cadastraCartoes);
 router.post('/cadastro-cartoes', IndexController.guardarCartao);
 router.get('/transacoes', IndexController.verTransacoes);
+router.post('/transacoes', IndexController.CadastrarTransacaoSequelize);
 router.get('/entradas', IndexController.verEntradas);
 router.get('/objetivos', IndexController.verObjetivos);
 router.get('/configuracoes', IndexController.verConfiguracoes);

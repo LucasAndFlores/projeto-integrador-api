@@ -5,7 +5,7 @@ const CadastroController = require('../controllers/CadastroController');
 
 
 
-router.get('/'/* , CadastroController.acessoCadastro */);
+router.get('/', (req, res) => {res.render('/')}/* CadastroController.acessoCadastro */);
 router.post('/', CadastroController.cadastraUsuario);
 
 
