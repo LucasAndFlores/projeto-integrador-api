@@ -1,4 +1,4 @@
-const { check, validationResult, body } = require("express-validator");
+
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt'); // cripto de senha
@@ -81,47 +81,7 @@ const IndexController = {
         res.render('configuracoes');
     },
 
-    cadastraUsuario: (req, res) => {
-
-        let listaDeErrors = validationResult(req);
-
-        if (listaDeErrors.isEmpty()) {
-
-            if (req.file) {
-                const { filename } = req.file;
-
-                return res.render('index', { image: `/storage/${filename}` });
-            } else {
-                let { nome, sobrenome, email, celular, dataNasc, senha } = req.body;
-                let usuario = JSON.stringify({ nome, sobrenome, email, celular, dataNasc, senha });
-
-
-                if (fs.readFileSync(usuarioJson).length === 0) {
-                    let usuarios = []
-                    usuarios.push(usuario);
-
-                    fs.writeFileSync(usuarioJson, JSON.stringify(usuarios), { encoding: 'utf-8' });
-                    res.send("Usuario cadastrado com sucesso!");
-
-                } else {
-                    let usuarios = []
-
-                    usuarios = JSON.parse(fs.readFileSync(usuarioJson));
-
-                    usuarios.push(usuario);
-
-                    fs.writeFileSync(usuarioJson, JSON.stringify(usuarios), { encoding: 'utf-8' });
-                    res.send("Usuario cadastrado com sucesso!");
-
-
-                }
-
-            }
-        }
-        else {
-            return res.render('cadastro', { errors: listaDeErrors.errors })
-        }
-    },  
+    
 
     // testeSequilize: async (req, res) => {
     //     const { nome, sobrenome, email, celular, dataNasc, senha } = req.body;
@@ -137,9 +97,7 @@ const IndexController = {
     //     return res.render("Adicionado com sucesso")
     // },
 
-    salvarForm: (req, res) => {
 
-    },
 
 }
 
