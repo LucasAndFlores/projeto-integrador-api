@@ -1,7 +1,3 @@
-
-const fs = require('fs');
-const path = require('path');
-const bcrypt = require('bcrypt'); // cripto de senha
 const router = require("../routes/rotasIndex");
 
 const { Usuario, Transacoes } = require('../models');
@@ -9,7 +5,7 @@ const { Usuario, Transacoes } = require('../models');
 // const Sequelize = require('sequelize');
 // const Op = Sequelize.Op;
  
-let usuarioJson = path.join("usuarios.json");
+
 
 const transacoes = [];
 const cartoescadastrados = [];
