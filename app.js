@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 8080;
+const models = require('./models');
+
 
 const rotasIndex = require('./routes/rotasIndex');
 const rotasHome = require('./routes/rotasHome');
@@ -26,5 +28,12 @@ app.listen(port, () => {
 app.use((req, res) => {
     return res.status(404).render('notFound');
 })
-
+const connect = async () => {try {
+    await models.sequelize.authenticate();
+    console.log('Conexão estabelecida com o sequelize');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+} 
+connect()
 

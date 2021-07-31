@@ -18,27 +18,16 @@
     <%- include('./partials/menuLateral') %>
     <div id= "container-direita">
         <h1>Meus cartões</h1>
-        <div id="cartao-e-info">
-          <div id="cartao">
-            <p class="texto-cartao">Débito/Crédito</p>
-            <p id="numero-cartao">****  ****  ****  ****</p>
-            <p id="nome-no-cartao">Nome e Sobrenome</p>
-          </div>
-          <div id="info-cartao">
-            <p>Limite: R$ 10000</p>
-            <p>Vencimento da fatura: dd/mm/aa </p>
-          </div>
-        </div>
-        <% cartao.forEach(dadocartao => { %>
+        <% cartoesexistente.forEach(dadocartao => { %>
         <div id="cartao-e-info">
             <div id="cartao">
-              <p class="texto-cartao">Débito/Crédito</p>
-              <p id="numero-cartao">****  ****  ****  <%= dadocartao.cartaoDigitos %> </p>
-              <p id="nome-no-cartao"> <%= dadocartao.cartaoNome %> </p>
+              <p class="texto-cartao"><%= dadocartao.tipo %></p>
+              <p id="numero-cartao">****  ****  ****  <%= dadocartao.digitos %> </p>
+              <p id="nome-no-cartao"> <%= dadocartao.name %> </p>
             </div>
             <div id="info-cartao">
               <p>Limite: R$ <%= dadocartao.limite %></p>
-              <p>Vencimento da fatura: <%= dadocartao.dataPagamento %>  </p>
+              <p>Vencimento da fatura: Todo dia <%= dadocartao.data_de_pagamento %>  </p>
             </div>
           </div>
           <% }) %>
