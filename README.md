@@ -2,8 +2,9 @@
 
 ## Para executar o banco e as tabelas corretamente, faça: 
 1 - Inicie o projeto com npm run dev. <br>
-2 - Execute o comando npx sequelize-cli db:create <br>
-3 - Execute o comando npx sequelize-cli db:migrate <br>
+2 - Fique atento se você usa linux, você vai precisar alterar o password no arquivo config, ou elimina-lo se você não configurou quando criou seu localhost no dbeaver.
+3 - Execute o comando npx sequelize-cli db:create <br>
+4 - Execute o comando npx sequelize-cli db:migrate <br>
 
 Dessa forma, ele vai automaticamente gerar as tabelas com todas as configs e campos necessário. <br>
 ## Caso precise criar uma tabela e configurar-lá (eu estou falando o que aconteceu comigo, então pode ser diferente pra você), faça: <br>
