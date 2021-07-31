@@ -1,6 +1,6 @@
 # projeto-integrador-aplication
 
-## Para executar o banco e as tabelas corretamentes, faça: 
+## Para executar o banco e as tabelas corretamente, faça: 
 1 - Inicie o projeto com npm run dev. <br>
 2 - Execute o comando npx sequelize-cli db:create <br>
 3 - Execute o comando npx sequelize-cli db:migrate <br>
