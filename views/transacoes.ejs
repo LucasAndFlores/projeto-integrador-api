@@ -23,19 +23,30 @@
             <form action="/index/transacoes" method="POST" class="registroDespesas">
                 <div class="estiloInput">
                     <label for="nomedespesa"> Loja </label>
-                    <input type="text" name="nomedespesa" id="nomedespesa" placeholder="Digite aqui onde você comprou">
-                </div>
-                <div class="estiloInput">
-                    <label for="tipodespesa"> Tipo de despesa </label>
-                    <input type="text" name="tipodespesa" id="tipodespesa" placeholder="Digite aqui qual o tipo despesa">
+                    <input type="text" name="loja" id="nomedespesa" placeholder="Digite aqui onde você comprou">
                 </div>
                 <div class="estiloInput">
                     <label for="datadespesa"> Data de despesa </label>
-                    <input type="date" name="datadespesa" id="datadespesa" placeholder="Digite aqui quando">
+                    <input type="date" name="data_transacao" id="datadespesa" placeholder="Digite aqui quando">
+                </div>
+                <div class="estiloInput">
+                    <label for="tipodespesa"> Meio de pagamento </label>
+                    <select name="meio_pagamento" id="tipodespesa">
+                       <option value="débito"> Débito </option> 
+                       <option value="crédito"> Crédito </option> 
+                    </select>
                 </div>
                 <div class="estiloInput">
                     <label for="valordespesa"> Valor da despesa </label>
-                    <input type="number" name="valordespesa" id="valordespesa" placeholder="Digite aqui quanto foi">
+                    <input type="number" name="valor" id="valordespesa" placeholder="Digite aqui quanto foi">
+                </div>
+                <div class="estiloInput">
+                    <label for="categoria"> Categoria </label>
+                    <select name="categorias" id="">categoria
+                    <% categorias.forEach(categoria => { %>
+                        <option value=<%= categoria.id %> >  <%= categoria.nome_categoria %>   </option> 
+                    <% }) %>
+                </select>
                 </div>
                 <button type="submit" class="botaoPlus">
                     <img src="/img/Abstract_Add_1 copy.png" alt="adicionarIcone" width="40px" height="40px">
@@ -50,18 +61,18 @@
                         <thead>
                             <tr>
                                 <th> Loja </th>
-                                <th> Tipo </th>
+                                <th> Meio de pagamento </th>
                                 <th> Data </th>
                                 <th> Total </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% transacoes.forEach(despesa => { %>
+                            <% transacoesexistente.forEach(despesa => { %>
                             <tr>         
-                                  <td> <%= despesa.nomedespesa %>  </td>
-                                  <td> <%= despesa.tipodespesa %>  </td>
-                                  <td> <%= despesa.datadespesa %>  </td>
-                                  <td> R$ <%= despesa.valordespesa %>  </td>
+                                  <td> <%= despesa.loja %>  </td>
+                                  <td> <%= despesa.meio_pagamento %>  </td>
+                                  <td> <%= despesa.data_transacao %>  </td>
+                                  <td> R$ <%= despesa.valor %>  </td>
                             </tr>
                             <% }) %>
                         </tbody>
