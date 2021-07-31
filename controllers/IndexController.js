@@ -1,10 +1,6 @@
-const { check, validationResult, body } = require("express-validator");
-const fs = require('fs');
-const path = require('path');
-const bcrypt = require('bcrypt'); // cripto de senha
 const router = require("../routes/rotasIndex");
  
-let usuarioJson = path.join("usuarios.json");
+
 
 const IndexController = {
     AcessoHome: (req, res) => {
@@ -22,7 +18,6 @@ const IndexController = {
     verConfiguracoes: (req, res) => {
         res.render('configuracoes');
     },
-
     cadastraUsuario: (req, res) => {
 
         let listaDeErrors = validationResult(req);
@@ -66,7 +61,7 @@ const IndexController = {
     },  
     salvarForm: (req, res) => {
 
-    },
+
 
 }
 
