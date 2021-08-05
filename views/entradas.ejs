@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/appHome.css">
+    <link rel="stylesheet" href="/stylesheets/partials-menulateral.css">
+    <link rel="stylesheet" href="/stylesheets/entradas.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>Economize + | Index</title>
+</head>
+
+<body>
+    <div class="container-master">
+
+        <%- include('./partials/menuLateral') %>
+
+        <div id= "container">
+            <div id="container-form">
+                <div class="espacamentoDiv">
+                    <div style=" margin-bottom: 18px;">
+                        <h1>Cadastro de Entradas</h1>
+                    </div>
+                    <div id="cartoes-form">
+                        <form action="/index/entradas" method="POST">
+                            <div class="input-cartoes">
+                            <label class= "label" for="nome">Tipo de Renda</label>
+                            <br>
+                            <input class="input" type="text" id="nome" name="nome" placeholder="Exemplo: Trabalho CLT ou Freela" required/>
+                            </div>
+                            <br>
+                            <div class="input-cartoes">
+                                <label class="label" for="valor">Valor</label>
+                                <br>
+                                <input class="input" type="text" id="valor" name="valor" placeholder="Exemplo: R$ 3000,00" required/>
+                            </div>
+                            <br>
+                            <div class="input-cartoes">
+                                <label class="label" for="data">Data da Entrada</label>
+                                <br>
+                                <input class="input" type="date" id="data" name="data"/>
+                            </div>
+                            <br>
+                            <div id="button">
+                            <button type="submit" id="fundo-azul">Cadastrar</button>   
+                            </div>                  
+                        </form>
+                        <div class="espacamentoDiv" >
+                            <h1 class="espacamentoParagrafo">Minhas Entradas</h1>
+                            <table class="tabelaGastos">                                
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo de Renda</th>
+                                            <th>Valor</th>
+                                            <th>Data</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% entradasExistentes.forEach(entrada => { %>
+                                        <tr>                                
+                                            <td><%= entrada.nome %></td>
+                                            <td><%= entrada.valor %></td>
+                                            <td><%= entrada.data %></td>
+                                        </tr>  
+                                    </tbody>                          
+                                    <% }) %>
+                            </table>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

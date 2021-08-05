@@ -7,13 +7,13 @@
 }
 
 body {
-  background-color: #efefef;
+  background-color: #E5E5E5;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   font-family: Rokkitt;
   width: 100%;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
 header {
@@ -270,25 +270,29 @@ main article section p {
 #caixa-cadastro {
   display: flex;
   flex-direction: row;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 85%;
+  margin-top: 20px;
 }
 #form-box {
   display: flex;
   flex-direction: row;
   width: 1200px;
-  height: 800px;
+  height: auto;
   margin-bottom: 90px;
   background: rgba(92, 186, 155, 0.92);
   padding: 50px;
+  background-color: white;
+  border-radius: 20px;
 }
 #form {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   
 }
 #bemvindo {

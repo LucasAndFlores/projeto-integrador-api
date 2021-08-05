@@ -1,6 +1,5 @@
 const router = require("../routes/rotasIndex");
- 
-
+const models = require('../models')
 
 const IndexController = {
     AcessoHome: (req, res) => {
@@ -8,7 +7,7 @@ const IndexController = {
     },
 
     verEntradas: (req, res) => {
-        res.send("Ver entradas");
+        res.render('entradas');
     },
 
     verObjetivos: (req, res) => {
@@ -59,12 +58,27 @@ const IndexController = {
             return res.render('cadastro', { errors: listaDeErrors.errors })
         }
     },  
+    
     salvarForm: (req, res) => {
 
+    },
 
+    verEntradas: async (req, res) => {
+        let entradasExistentes = await models.entrada.findAll({});
+        res.render('entradas', {entradasExistentes})       
+    },
 
+    cadastrarEntradas: async (req, res) => {
+            let {nome, valor, data} = req.body
+            const inserir = await models.entrada.create({
+                nome,
+                valor,
+                data,                
+            });
+            res.redirect('entradas')
+    },
+    
 }
-
 
 
 module.exports = IndexController

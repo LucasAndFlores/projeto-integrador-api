@@ -3,9 +3,7 @@ const models = require('../models')
 const cartoesController = {
     verCartoes: async (req, res) => {
         let cartoesexistente = await models.cartoe.findAll({});
-        res.render('cartoes', {cartoesexistente})
-        
-        
+        res.render('cartoes', {cartoesexistente})       
     },
 
     cadastrarCartao: (req,res) => {
