@@ -6,12 +6,12 @@ const router = require("../routes/rotasCadastro");
 const db = require('../models');
 
 
-const CadastroController = {
+const  CadastroController =  {
 
     acessoCadastro: (req, res) => {
         res.render('cadastro')
     },
-    cadastraUsuario: (req, res) => {
+    cadastraUsuario: async (req, res) => {
 
         let listaDeErrors = validationResult(req);
 
@@ -23,9 +23,9 @@ const CadastroController = {
                 return res.redirect('/index'/* , { image: `/storage/${filename}` } */);
             } else {
                 let { nome, sobrenome, email, celular, dataNasc, senha } = req.body;
-                let senhaCripto = bcrypt.hashSync(senha,10);
-              
-                db.usuarios.create({
+                let senhaCripto = bcrypt.hashSync(senha, 10);
+
+                const resultado = await db.usuarios.create({
                     nome: nome,
                     sobrenome: sobrenome,
                     email: email,
@@ -33,9 +33,17 @@ const CadastroController = {
                     datanasc: dataNasc,
                     senha: senhaCripto
 
-                });
+                }).then( () => {
+                   return res.redirect('/login');
+                }).catch( err => {
+                    if(err.errors[0].type === "unique violation"){ // e-mail ja cadastrado
+                        
+                        return res.send("E-mail já cadastrado!");
+                    }else{
+                        return res.send(err);
+                    }
+                })
 
-                res.redirect('/index')
             }
         }
         else {
