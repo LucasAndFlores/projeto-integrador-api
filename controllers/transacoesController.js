@@ -7,7 +7,7 @@ const models = require('../models')
 const transacoesController = {
 
     CadastrarTransacaoSequelize: async (req, res) => {
-        let { loja, data_transacao, meio_pagamento, valor } = req.body;
+        let { loja, data_transacao, meio_pagamento, valor, categorias } = req.body;
         const inserir = await models.transacoe.create({
                     loja,
                     data_transacao,
