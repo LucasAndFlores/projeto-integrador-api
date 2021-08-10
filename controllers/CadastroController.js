@@ -3,14 +3,15 @@ const path = require('path');
 const bcrypt = require('bcrypt'); // cripto de senha
 const { check, validationResult, body } = require("express-validator");
 const router = require("../routes/rotasCadastro");
-let usuarioJson = path.join("usuarios.json");
+const db = require('../models');
 
-const CadastroController = {
 
-    acessoCadastro: (req,res) => {
+const  CadastroController =  {
+
+    acessoCadastro: (req, res) => {
         res.render('cadastro')
     },
-    cadastraUsuario: (req, res) => {
+    cadastraUsuario: async (req, res) => {
 
         let listaDeErrors = validationResult(req);
 
@@ -22,40 +23,39 @@ const CadastroController = {
                 return res.redirect('/index'/* , { image: `/storage/${filename}` } */);
             } else {
                 let { nome, sobrenome, email, celular, dataNasc, senha } = req.body;
-                let usuario = JSON.stringify({ nome, sobrenome, email, celular, dataNasc, senha });
+                let senhaCripto = bcrypt.hashSync(senha, 10);
 
+                const resultado = await db.usuarios.create({
+                    nome: nome,
+                    sobrenome: sobrenome,
+                    email: email,
+                    telefone: celular,
+                    datanasc: dataNasc,
+                    senha: senhaCripto
 
-                if (fs.readFileSync(usuarioJson).length === 0) {
-                    let usuarios = []
-                    usuarios.push(usuario);
-
-                    fs.writeFileSync(usuarioJson, JSON.stringify(usuarios), { encoding: 'utf-8' });
-                    res.send("Usuario cadastrado com sucesso!!");
-
-                } else {
-                    let usuarios = []
-
-                    usuarios = JSON.parse(fs.readFileSync(usuarioJson));
-
-                    usuarios.push(usuario);
-
-                    fs.writeFileSync(usuarioJson, JSON.stringify(usuarios), { encoding: 'utf-8' });
-                    /* res.send("Usuario cadastrado com sucesso!!!"),  */res.redirect('/index');
-
-                }
+                }).then( () => {
+                   return res.redirect('/login');
+                }).catch( err => {
+                    if(err.errors[0].type === "unique violation"){ // e-mail ja cadastrado
+                        
+                        return res.send("E-mail já cadastrado!");
+                    }else{
+                        return res.send(err);
+                    }
+                })
 
             }
         }
         else {
             return res.render('cadastro', { errors: listaDeErrors.errors })
         }
-    },      
-    
+    },
+
     salvarForm: (req, res) => {
 
     },
 
-}   
+}
 
 
 module.exports = CadastroController;

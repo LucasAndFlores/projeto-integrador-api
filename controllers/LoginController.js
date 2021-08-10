@@ -2,11 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt'); // cripto de senha
 
-const CheckUserController = require('./CheckUserController');
+
 
 const { check, validationResult, body } = require("express-validator")
 
-let usuarioJson = path.join("usuarios.json");
+const db = require('../models');
 
 const LoginController = {
     acessoLogin: (req, res) => {
@@ -18,23 +18,37 @@ const LoginController = {
     },
 
     autenticaUsuario: (req, res) => {
-        console.log(validationResult(req));
-        console.log(req.body, req.file);
+
         /* res.redirect('/index'); */
 
         let listaDeErrors = validationResult(req);
 
         if (listaDeErrors.isEmpty()) {
-            //const { filename } = req.file;
+
 
             let { email, senha } = req.body;
 
-            let found = false;
+            let senhaCripto = bcrypt.hashSync(senha, 10);
 
-            found = CheckUserController(email, senha);
+            resultado = db.usuarios.findOne({
+                where: {
+                    email: email
+                }
 
-    
-            if (found) { return res.render('index', { email: email }) } else { return res.send("Usuario ou senha invalidos") }
+            }).then((resultado) => {
+                
+                if (resultado !== null) {
+                    let check = bcrypt.compareSync(senha, resultado.senha);
+                    if(check){return res.render('index', { email: email });}
+                    else{ return res.send("Usuario ou senha invalidos");}
+                    
+                } else {
+                    return res.send("Usuario ou senha invalidos");
+                }
+            }).catch(error => {
+                return res.send("Usuario ou senha invalidos")
+            });
+
 
         }
         else {
