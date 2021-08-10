@@ -17,6 +17,7 @@ router.get('/entradas', IndexController.verEntradas);
 router.post('/entradas', IndexController.cadastrarEntradas);
 router.get('/objetivos', IndexController.verObjetivos);
 router.get('/configuracoes', IndexController.verConfiguracoes);
+router.get('/index', IndexController.AcessoHome);
  
 
 module.exports = router;
