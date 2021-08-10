@@ -39,7 +39,12 @@ const LoginController = {
                 
                 if (resultado !== null) {
                     let check = bcrypt.compareSync(senha, resultado.senha);
-                    if(check){return res.render('index', { email: email });}
+                    if(check){ 
+
+                        req.session.usuario = resultado;
+                        return res.redirect('/index');    
+
+                    }
                     else{ return res.send("Usuario ou senha invalidos");}
                     
                 } else {
