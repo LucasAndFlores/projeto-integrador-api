@@ -25,29 +25,31 @@
                         <h1>Cadastro de Entradas</h1>
                     </div>
                     <div id="cartoes-form">
-                        <form action="/index/entradas" method="POST">
-                            <div class="input-cartoes">
-                            <label class= "label" for="nome">Tipo de Renda</label>
-                            <br>
-                            <input class="input" type="text" id="nome" name="nome" placeholder="Exemplo: Trabalho CLT ou Freela" required/>
-                            </div>
-                            <br>
-                            <div class="input-cartoes">
-                                <label class="label" for="valor">Valor</label>
+                        <div class="formatarForm">
+                            <form action="/index/entradas" method="POST">
+                                <div class="input-cartoes">
+                                <label class= "label" for="nome">Tipo de Renda</label>
                                 <br>
-                                <input class="input" type="text" id="valor" name="valor" placeholder="Exemplo: R$ 3000,00" required/>
-                            </div>
-                            <br>
-                            <div class="input-cartoes">
-                                <label class="label" for="data">Data da Entrada</label>
+                                <input class="input" type="text" id="nome" name="nome" placeholder="Exemplo: Trabalho CLT ou Freela" required/>
+                                </div>
                                 <br>
-                                <input class="input" type="date" id="data" name="data"/>
-                            </div>
-                            <br>
-                            <div id="button">
-                            <button type="submit" id="fundo-azul">Cadastrar</button>   
-                            </div>                  
-                        </form>
+                                <div class="input-cartoes">
+                                    <label class="label" for="valor">Valor</label>
+                                    <br>
+                                    <input class="input" type="text" id="valor" name="valor" placeholder="Exemplo: R$ 3000,00" required/>
+                                </div>
+                                <br>
+                                <div class="input-cartoes">
+                                    <label class="label" for="data">Data da Entrada</label>
+                                    <br>
+                                    <input class="input" type="date" id="data" name="data"/>
+                                </div>
+                                <br>
+                                <div id="button">
+                                <button type="submit" id="fundo-azul">Cadastrar</button>   
+                                </div>                  
+                            </form>
+                        </div>
                         <div class="espacamentoDiv" >
                             <h1 class="espacamentoParagrafo">Minhas Entradas</h1>
                             <table class="tabelaGastos">                                

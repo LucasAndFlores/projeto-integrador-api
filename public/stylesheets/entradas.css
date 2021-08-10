@@ -578,6 +578,12 @@ body {
     align-items: center;
   } */
 
+.formatarForm {
+  display: flex;
+  flex-direction: column;
+
+}
+
 @media (max-width: 1279px) {
     
 } 
@@ -704,7 +710,7 @@ body {
     font-size: 1.7rem;
   }
   .input-cartoes{
-    margin-left: 17%;
+    margin-left: 0%;
   }
   .img-header{
     margin-left: 10px;

@@ -9,18 +9,18 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
+/*     static associate(models) {
       Entrada.hasOne(models.categoria, {
         foreignKey: 'categoryId'
       })
 
-    }
+    } */
   };
   Entrada.init({
     nome: DataTypes.STRING,
     valor: DataTypes.FLOAT,
     data: DataTypes.DATE ,
-    categoryId: DataTypes.INTEGER
+    /* categoryId: DataTypes.INTEGER */
   }, {
     sequelize,
     modelName: 'entrada',
