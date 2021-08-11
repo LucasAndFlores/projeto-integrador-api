@@ -3,7 +3,12 @@ const models = require('../models')
 
 const IndexController = {
     AcessoHome: (req, res) => {
-        res.render('index',{usuario: req.session.usuario});
+        if (!req.session.usuario) {
+            res.redirect('login');
+        } else {
+            res.render('index', { usuario: req.session.usuario });
+        }
+
     },
 
     verEntradas: (req, res) => {
@@ -17,26 +22,26 @@ const IndexController = {
     verConfiguracoes: (req, res) => {
         res.render('configuracoes');
     },
-    
+
     salvarForm: (req, res) => {
 
     },
 
     verEntradas: async (req, res) => {
         let entradasExistentes = await models.entrada.findAll({});
-        res.render('entradas', {entradasExistentes})       
+        res.render('entradas', { entradasExistentes })
     },
 
     cadastrarEntradas: async (req, res) => {
-            let {nome, valor, data} = req.body
-            const inserir = await models.entrada.create({
-                nome,
-                valor,
-                data,                
-            });
-            res.redirect('entradas')
+        let { nome, valor, data } = req.body
+        const inserir = await models.entrada.create({
+            nome,
+            valor,
+            data,
+        });
+        res.redirect('entradas')
     },
-    
+
 }
 
 
