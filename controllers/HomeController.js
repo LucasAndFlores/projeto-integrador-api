@@ -1,5 +1,8 @@
 const HomeController = {
     acessoHome: (req, res) => {
+         if (req.session.usuario) {
+            req.session.usuario = undefined;
+        } 
         res.render('home');
     },
 
