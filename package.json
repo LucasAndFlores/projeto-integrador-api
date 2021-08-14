@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LucasAndFlores/projeto-integrador-aplication.git"
+    "url": "git+https://github.com/LucasAndFlores/projeto-integrador-api.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LucasAndFlores/projeto-integrador-aplication/issues"
+    "url": "https://github.com/LucasAndFlores/projeto-integrador-api.git/issues"
   },
-  "homepage": "https://github.com/LucasAndFlores/projeto-integrador-aplication#readme",
+  "homepage": "https://github.com/LucasAndFlores/projeto-integrador-api.git#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "ejs": "^3.1.6",
