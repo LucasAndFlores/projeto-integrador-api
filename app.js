@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3030;
 const models = require('./models');
 const rotasIndex = require('./routes/rotasIndex');
 
