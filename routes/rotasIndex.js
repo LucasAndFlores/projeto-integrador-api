@@ -17,9 +17,16 @@ router.put('/transacoes/:id', transacoesController.atualizarTransacao)
 router.delete('/transacoes/:id', transacoesController.destruirTransacao)
 router.get('/entradas', entradasController.verEntradas);
 router.post('/entradas', entradasController.cadastrarEntradas);
+router.put('/entradas/:id', entradasController.atualizarEntradas);
+router.delete('/entradas/:id', entradasController.destruirEntrada);
+router.get('/categorias', categoriaController.todasCategoria )
+router.post('/categorias', categoriaController.cadastrarCategoria )
+router.put('/categorias/:id', categoriaController.atualizarCategoria )
+router.delete('/categorias/:id', categoriaController.destruirCategoria )
+
+
 // router.get('/objetivos', objetivosController.verObjetivos);
 // router.post('/objetivos', objetivosController.verObjetivos);
-router.get('/categorias', categoriaController.todasCategorias )
  
 
 module.exports = router;

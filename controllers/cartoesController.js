@@ -7,7 +7,6 @@ const cartoesController = {
                 let cartoesexistente = await models.cartoe.findAll({});
                 res.status(200).json(cartoesexistente)
             } catch (error) {
-                res.status(404) 
                 console.log(error)
             }
     },
@@ -24,7 +23,6 @@ const cartoesController = {
             })
             res.status(200).json(inserir)
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
 
@@ -52,7 +50,6 @@ const cartoesController = {
             res.status(200).json(cartaoAtualizado)
             
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     },
@@ -66,7 +63,6 @@ const cartoesController = {
             res.status(200).send('cartao destruido')
             
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     }

@@ -19,7 +19,6 @@ const transacoesController = {
 
              res.status(200).json(inserir)
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     },
@@ -31,7 +30,6 @@ const transacoesController = {
             });
             res.status(200).json(transacoesexistente)  
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     },
@@ -56,7 +54,6 @@ const transacoesController = {
 
             res.status(200).json(mostrandoTransacao)
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     },
@@ -69,7 +66,6 @@ const transacoesController = {
             ) 
             res.status(200).send('transacao destruida')
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     }
