@@ -6,7 +6,7 @@ const categoriasControoler = {
         try {
             let all = await models.categoria.findAll({
                 include: {
-                    model: models.transacoe,
+                    model: models.transacoes,
                     as: 'transacoes'
                 }
             })
@@ -18,9 +18,9 @@ const categoriasControoler = {
 
     cadastrarCategoria: async (req, res) => {
         try {
-            let { nome_categoria } = req.body
+            let { nomeCategoria } = req.body
             const inserir = await models.categoria.create({
-                nome_categoria
+                nomeCategoria
             });
             res.status(200).json(inserir)
         } catch (error) {
@@ -31,10 +31,10 @@ const categoriasControoler = {
     atualizarCategoria: async (req,res) => {
         try {
             let { id } = req.params
-            let { nome_categoria } = req.body;
+            let { nomeCategoria } = req.body;
             let atualizandoCategoria = await models.categoria.update(
                 {
-                    nome_categoria
+                    nomeCategoria
                 }, 
                 {
                     where: {id: id}

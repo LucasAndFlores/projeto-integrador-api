@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 const models = require('./models');
 const rotasIndex = require('./routes/rotasIndex');
+const rotasCartoes = require('./routes/rotasCartoes')
 
 app.use(express.static('public'));
 app.use('/storage', express.static('storage'))
@@ -11,6 +12,7 @@ app.use(express.json());
 
 
 app.use('/v1', rotasIndex);
+app.use('/v1/cartoes', rotasCartoes);
 
 app.listen(port, () => {
     console.log('Server started on port: ' + port)
