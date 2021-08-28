@@ -3,7 +3,7 @@ const {
   Model,
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class transacoe extends Model {
+  class transacoes extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -16,12 +16,12 @@ module.exports = (sequelize, DataTypes) => {
       // })
     }
   };
-  transacoe.init({
+  transacoes.init({
     loja: DataTypes.STRING,
-    data_transacao: DataTypes.DATE,
+    dataTransacao: DataTypes.DATE,
     valor: DataTypes.DECIMAL,
-    meio_pagamento: DataTypes.BOOLEAN,
-    fk_categoria_id: {
+    meioPagamento: DataTypes.BOOLEAN,
+    fkCategoriaId: {
       type: DataTypes.INTEGER, 
       references: {
         model: 'categoria',
@@ -30,7 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'transacoe',
+    modelName: 'transacoes',
+    underscored:true
   });
-  return transacoe;
+  return transacoes;
 };

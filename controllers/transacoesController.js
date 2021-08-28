@@ -8,18 +8,17 @@ const transacoesController = {
 
     CadastrarTransacaoSequelize: async (req, res) => {
         try {
-            let { loja, data_transacao, meio_pagamento, valor, categorias } = req.body;
-            const inserir = await models.transacoe.create({
+            let { loja, dataTransacao, meioPagamento, valor, fkCategoriaId } = req.body;
+            const inserir = await models.transacoes.create({
                     loja,
-                    data_transacao,
+                    dataTransacao,
                     valor,
-                    meio_pagamento,
-                    fk_categoria_id: categorias
+                    meioPagamento,
+                    fkCategoriaId
                 })
 
              res.status(200).json(inserir)
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     },
@@ -27,11 +26,10 @@ const transacoesController = {
     verTransacoes: async (req, res) => {
 
         try {
-            let transacoesexistente = await models.transacoe.findAll({ 
+            let transacoesexistente = await models.transacoes.findAll({ 
             });
             res.status(200).json(transacoesexistente)  
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     },
@@ -39,24 +37,23 @@ const transacoesController = {
     atualizarTransacao: async (req,res) => {
         try {
             let { id } = req.params
-            let { loja, data_transacao, meio_pagamento, valor, categorias } = req.body;
-            let atualizandoTransacao = await models.transacoe.update(
+            let { loja, dataTransacao, meioPagamento, valor, fkCategoriaId } = req.body;
+            let atualizandoTransacao = await models.transacoes.update(
                 {
                     loja,
-                    data_transacao,
+                    dataTransacao,
                     valor, 
-                    meio_pagamento,
-                    categorias
+                    meioPagamento,
+                    fkCategoriaId
                 }, 
                 {
                     where: {id: id}
                 }
             );
-            let mostrandoTransacao = await models.transacoe.findByPk(id)
+            let mostrandoTransacao = await models.transacoes.findByPk(id)
 
             res.status(200).json(mostrandoTransacao)
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     },
@@ -64,12 +61,11 @@ const transacoesController = {
     destruirTransacao: async (req, res) => {
         try {
             let { id } = req.params
-            let transacaoDestruir = await models.transacoe.destroy(
+            let transacaoDestruir = await models.transacoes.destroy(
                 {where: {id: id}}
             ) 
             res.status(200).send('transacao destruida')
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     }

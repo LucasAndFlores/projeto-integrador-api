@@ -4,27 +4,25 @@ const cartoesController = {
     verCartoes: 
         async (req, res) => {
             try {
-                let cartoesexistente = await models.cartoe.findAll({});
+                let cartoesexistente = await models.cartoes.findAll({});
                 res.status(200).json(cartoesexistente)
             } catch (error) {
-                res.status(404) 
                 console.log(error)
             }
     },
 
     guardarCartao: async (req, res) => {
         try {
-            let {name, digitos, limite, data_de_pagamento, tipo} = req.body
-            const inserir = await models.cartoe.create({
+            let {name, digitos, limite, dataDePagamento, tipo} = req.body
+            const inserir = await models.cartoes.create({
                 name,
                 digitos,
                 limite,
-                data_de_pagamento,
+                dataDePagamento,
                 tipo
             })
             res.status(200).json(inserir)
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
 
@@ -34,25 +32,24 @@ const cartoesController = {
     atualizarCartao: async (req,res) => {
         try {
             let { id } = req.params
-            let { name, digitos, limite, data_de_pagamento, tipo } = req.body
-            let atualizandoCartao = await models.cartoe.update(
+            let { name, digitos, limite, dataDePagamento, tipo } = req.body
+            let atualizandoCartao = await models.cartoes.update(
                 {
                     name,
                     digitos,
                     limite,
-                    data_de_pagamento,
+                    dataDePagamento,
                     tipo
                 }, 
                 {
                     where: {id: id}
                 }
             );
-            let cartaoAtualizado = await models.cartoe.findByPk(id)
+            let cartaoAtualizado = await models.cartoes.findByPk(id)
 
             res.status(200).json(cartaoAtualizado)
             
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     },
@@ -60,13 +57,12 @@ const cartoesController = {
     destruirCartao: async (req,res) => {
         try {
             let { id } = req.params
-            let transacaoDestruir = await models.cartoe.destroy(
+            let cartaoDestruir = await models.cartoes.destroy(
                 {where: {id: id}}
             ) 
             res.status(200).send('cartao destruido')
             
         } catch (error) {
-            res.status(404) 
             console.log(error)
         }
     }
