@@ -3,8 +3,8 @@ const router = express.Router();
 const transacoesController = require('../controllers/transacoesController');
 const cartoesController = require('../controllers/cartoesController');
 const categoriaController = require('../controllers/categoriasController');
-const entradasController = require ('../controllers/entradasController')
-
+const entradasController = require('../controllers/entradasController');
+const usuariosController = require('../controllers/usuariosController');
 
 
 router.get('/cartoes',cartoesController.verCartoes);
@@ -27,6 +27,8 @@ router.delete('/categorias/:id', categoriaController.destruirCategoria )
 
 // router.get('/objetivos', objetivosController.verObjetivos);
 // router.post('/objetivos', objetivosController.verObjetivos);
+router.get('/configuracoes', usuariosController.verConfiguracoes);
+router.put('/usuarios/:id', usuariosController.editarUsuarios);
  
 
 module.exports = router;
