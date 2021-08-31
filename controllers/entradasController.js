@@ -12,7 +12,7 @@ const entradasController = {
         }    
     },
 
-    cadastrarEntradas: async (req, res) => {
+    criarEntrada: async (req, res) => {
         try {
             let { nome, valor, data } = req.body
             
@@ -41,7 +41,7 @@ const entradasController = {
         }
     },
 
-    atualizarEntradas: async (req,res) => {
+    editarEntrada: async (req,res) => {
         try {
             let { id } = req.params
             let { nome, valor, data } = req.body;
@@ -63,7 +63,7 @@ const entradasController = {
         }
     },
 
-    destruirEntrada: async (req, res) => {
+    deletarEntrada: async (req, res) => {
         try {
             let { id } = req.params
             let entradaDestruir = await models.entrada.destroy(

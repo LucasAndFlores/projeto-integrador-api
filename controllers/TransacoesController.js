@@ -1,12 +1,20 @@
 const models = require('../models')
-// const config = require('../config/database')
-// const Sequelize = require('sequelize');
-// const Op = Sequelize.Op;
-
 
 const transacoesController = {
 
-    CadastrarTransacaoSequelize: async (req, res) => {
+    verTransacoes: async (req, res) => {
+
+        try {
+            let transacoesExistente = await models.transacoe.findAll({ 
+            });
+            res.status(200).json(transacoesExistente)  
+        } catch (error) {
+            res.status(404) 
+            console.log(error)
+        }
+    },
+
+    criarTransacao: async (req, res) => {
         try {
             let { loja, dataTransacao, meioPagamento, valor, fkCategoriaId } = req.body;
             const inserir = await models.transacoes.create({
@@ -22,19 +30,8 @@ const transacoesController = {
             console.log(error)
         }
     },
-
-    verTransacoes: async (req, res) => {
-
-        try {
-            let transacoesexistente = await models.transacoes.findAll({ 
-            });
-            res.status(200).json(transacoesexistente)  
-        } catch (error) {
-            console.log(error)
-        }
-    },
-
-    atualizarTransacao: async (req,res) => {
+    
+    editarTransacao: async (req,res) => {
         try {
             let { id } = req.params
             let { loja, dataTransacao, meioPagamento, valor, fkCategoriaId } = req.body;
@@ -58,13 +55,13 @@ const transacoesController = {
         }
     },
 
-    destruirTransacao: async (req, res) => {
+    deletarTransacao: async (req, res) => {
         try {
             let { id } = req.params
             let transacaoDestruir = await models.transacoes.destroy(
                 {where: {id: id}}
             ) 
-            res.status(200).send('transacao destruida')
+            res.status(200).send('Transação deletada com sucesso!')
         } catch (error) {
             console.log(error)
         }

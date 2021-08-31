@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt'); // cripto de senha
 const { check, validationResult, body } = require("express-validator");
-const router = require("../routes/rotasCadastro");
 const db = require('../models');
+const router = require("../routes/rotasCadastro");
 
 
 const  CadastroController =  {

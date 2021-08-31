@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const cartoesController = require('../controllers/cartoesController');
+const cartoesController = require('../controllers/CartoesController')
 
 router.get('/',cartoesController.verCartoes);
-router.post('/', cartoesController.guardarCartao);
-router.put('/:id', cartoesController.atualizarCartao)
-router.delete('/:id', cartoesController.destruirCartao)
+router.post('/', cartoesController.criarCartao);
+router.put('/:id', cartoesController.editarCartao)
+router.delete('/:id', cartoesController.deletarCartao)
 
 
 // router.get('/objetivos', objetivosController.verObjetivos);
