@@ -1,4 +1,4 @@
-const router = require("../routes/rotasIndex");
+
 const models = require('../models')
 const bcrypt = require('bcrypt'); // cripto de senha
 const { check, validationResult, body } = require("express-validator");
@@ -26,7 +26,7 @@ const usuariosController = {
             if (req.file) {
                 const { filename } = req.file;
 
-                return res.redirect('/index'/* , { image: `/storage/${filename}` } */);
+                // return res.redirect('/index'/* , { image: `/storage/${filename}` } */);
             } else {
                 let { nome, sobrenome, email, celular, dataNasc, senha } = req.body;
                 let senhaCripto = bcrypt.hashSync(senha, 10);
@@ -53,7 +53,7 @@ const usuariosController = {
             }
         }
         else {
-            return res.render('cadastro', { errors: listaDeErrors.errors })
+            return res.send('cadastro')
         }
     },
 
