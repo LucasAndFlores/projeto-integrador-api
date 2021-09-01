@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'objetivo',
+    underscored: true
   });
   return Objetivo;
 };
