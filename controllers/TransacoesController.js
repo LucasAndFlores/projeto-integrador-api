@@ -1,4 +1,4 @@
-const models = require('../models')
+
 const transacoesService = require('../services/transacoesService')
 
 const transacoesController = {
@@ -16,9 +16,9 @@ const transacoesController = {
     criarTransacao: async (req, res) => {
         try {
            let inserido = await transacoesService.CriarTransacao(req.body)
-            res.status(200).json(inserido)
+            res.status(201).json(inserido)
         } catch (error) {
-            console.log(error)
+            res.status(error).send(error)
         }
     },
     
@@ -33,21 +33,12 @@ const transacoesController = {
 
     deletarTransacao: async (req, res) => {
         try {
-            let { id } = req.params
-            let transacaoDestruir = await models.transacoes.destroy(
-                {where: {id: id}}
-            ) 
-            res.status(200).send('Transação deletada com sucesso!')
+            let deletar = await transacoesService.DeletarTransacao(req)
+            res.status(200).send(deletar)
         } catch (error) {
             console.log(error)
         }
     }
-
-
-
-
-
-
 
 
 }

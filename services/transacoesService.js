@@ -30,22 +30,42 @@ const transacoesService = {
     },
 
     atualizarTransacao: async (req) => {
-        let { id } = req.params
-        let { loja, dataTransacao, meioPagamento, valor, fkCategoriaId } = req.body;
-        const atualizar = await transacoesRepo.Atualizar(
-            {
-                loja,
-                dataTransacao,
-                valor,
-                meioPagamento,
-                fkCategoriaId
-            }, {
-                where: {id: id}
-            }
-        )
+
+        try {
+            let { id } = req.params
+            let { loja, dataTransacao, meioPagamento, valor, fkCategoriaId } = req.body;
+            const atualizar = await transacoesRepo.Atualizar(
+                {
+                    loja,
+                    dataTransacao,
+                    valor,
+                    meioPagamento,
+                    fkCategoriaId
+                }, {
+                    where: {id: id}
+                }
+            )
+            const atualizado = await transacoesRepo.Pesquisar(
+                id = id
+            
+            )
+            return atualizado
+        } catch (error) {
+            return error
+        }
+       
+    }, 
+
+    DeletarTransacao: async (req) => {
         
-        return atualizar
-    }
+        try {
+            let { id } = req.params;
+            let deletando = await transacoesRepo.Deletar({where: {id: id}})
+            return deletando 
+        } catch (error) {
+            return error
+        }
+    },
 
 }
 

@@ -4,8 +4,13 @@ module.exports = {
 
     BuscarTodas: async () => {
         try {
-            const todosUsuarios = await models.transacoes.findAll({})
-            return todosUsuarios
+            const listarTodos = await models.categoria.findAll({
+                include: {
+                    model: models.transacoes,
+                    as: 'transacoes'
+                }
+            })
+            return listarTodos
         } catch (error) {
             return error
         }
@@ -13,7 +18,7 @@ module.exports = {
 
     Criar: async data => {
         try {
-            const inserir = await models.transacoes.create(data)
+            const inserir = await models.categoria.create(data)
             return inserir
         } catch (error) {
             return error
@@ -22,7 +27,7 @@ module.exports = {
     
     Atualizar: async (data, id) => {
         try {
-            const atualizando = await models.transacoes.update(data,id)
+            const atualizando = await models.categoria.update(data,id)
             return atualizando 
         } catch (error) {
             return error
@@ -31,7 +36,7 @@ module.exports = {
 
     Pesquisar: async (id) => {
         try {
-            const localizado = await models.transacoes.findByPk(id)
+            const localizado = await models.categoria.findByPk(id)
             return localizado
         } catch (error) {
             return error
@@ -40,8 +45,8 @@ module.exports = {
 
     Deletar: async (where) => {
         try {
-           const deletar = await models.transacoes.destroy(where) 
-           return "transação deletada"
+           const deletar = await models.categoria.destroy(where) 
+           return "categoria deletada"
         } catch (error) {
             return error
         }
