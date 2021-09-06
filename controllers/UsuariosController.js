@@ -1,101 +1,85 @@
 
-const models = require('../models')
-const bcrypt = require('bcrypt'); // cripto de senha
-const { check, validationResult, body } = require("express-validator");
-const db = require('../models');
+const usuariosService = require('../services/usuariosService');
+
 
 const usuariosController = {
 
-    verUsuarios: async (req, res) => {     
-        try{               
+    verUsuarios: async (req, res) => {
+        try {
             let usuario = await models.usuarios.findAll({
             })
             res.status(200).json(usuario);
         } catch (error) {
-            res.status(404) 
+            res.status(404)
             console.log(error)
         }
     },
 
     cadastrarUsuario: async (req, res) => {
 
-        let listaDeErrors = validationResult(req);
-
-        if (listaDeErrors.isEmpty()) {
-
-            if (req.file) {
-                const { filename } = req.file;
-
-                // return res.redirect('/index'/* , { image: `/storage/${filename}` } */);
-            } else {
-                let { nome, sobrenome, email, celular, dataNasc, senha } = req.body;
-                let senhaCripto = bcrypt.hashSync(senha, 10);
-
-                const resultado = await db.usuarios.create({
-                    nome: nome,
-                    sobrenome: sobrenome,
-                    email: email,
-                    telefone: celular,
-                    datanasc: dataNasc,
-                    senha: senhaCripto
-
-                }).then( () => {
-                   return res.status(200).json('Usuário cadastrado com sucesso!');
-                }).catch( err => {
-                    if(err.errors[0].type === "unique violation"){ // e-mail ja cadastrado
-                        
-                        return res.send("E-mail já cadastrado!");
-                    }else{
-                        return res.send(err);
-                    }
-                })
-
-            }
-        }
-        else {
-            return res.send('cadastro')
+        try {
+            await usuariosService.cadastrarUsuario(req, res);
+        } catch (e) {
+            return res.status(500).send({
+                date: new Date(),
+                code: 500,
+                message: e.message
+            });
         }
     },
 
     editarUsuario: async (req, res) => {
-        try{
-            const { id } = req.params            
-            const { nome, sobrenome, telefone } = req.body;            
-            await models.usuarios.update({ 
-                nome, 
-                sobrenome, 
-                telefone 
+        try {
+            const { id } = req.params
+            const { nome, sobrenome, telefone } = req.body;
+            await models.usuarios.update({
+                nome,
+                sobrenome,
+                telefone
             },
-            {
-                where: {
-                    id
-                }
-            });                    
+                {
+                    where: {
+                        id
+                    }
+                });
             let mostrandoUsuario = await models.usuarios.findByPk(id)
 
             res.status(200).json(mostrandoUsuario)
-            
+
         } catch (error) {
-            res.status(404) 
+            res.status(404)
             console.log(error)
-        }    
-            
+        }
+
     },
 
-    deletarUsuario: async (req,res) => {
+    deletarUsuario: async (req, res) => {
         try {
             let { id } = req.params
             await models.usuarios.destroy(
-                {where: {id: id}}
-            ) 
+                { where: { id: id } }
+            )
             res.status(200).send('Usuario deletado com sucesso!')
-            
+
         } catch (error) {
-            res.status(404) 
+            res.status(404)
             console.log(error)
         }
+    },
+
+    autorizarUsuario: async (req, res) => {
+        try {
+            await usuariosService.autorizarUsuario(req, res);
+        } catch (e) {
+            return res.status(400).send({
+                date: new Date(),
+                code: 400,
+                message: e.message
+            });
+        }
+
     }
 
 }
 
-module.exports = usuariosController
+module.exports = usuariosController;
