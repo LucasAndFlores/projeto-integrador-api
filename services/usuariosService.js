@@ -1,7 +1,7 @@
 const models = require('../models')
 const bcrypt = require('bcrypt'); // cripto de senha
 const jwt = require('jsonwebtoken');
-
+const config = require('../config/config.json');
 
 const usuariosService = {
 
@@ -34,9 +34,9 @@ const usuariosService = {
 
             if (resultado) {
 
-
+                
                 // create a jwt token that is valid for 1 day
-                const token = jwt.sign({ sub: resultado.dataValues.id }, config.secret, { expiresIn: '1' });
+                var bearer = jwt.sign({ sub: resultado.dataValues.id }, config.secret, { expiresIn: '1' });
 
                 res.status(200).send(
 
@@ -44,7 +44,7 @@ const usuariosService = {
                         date: new Date(),
                         code: 200,
                         message: "Usuário" + email + " cadastrado com sucesso!",
-                        token: jwt
+                        token: bearer
                     }
 
                 );
@@ -52,27 +52,36 @@ const usuariosService = {
             }
 
         } catch (e) {
-            if (e.parent.sqlMessage) {
-                res.status(500).send(
-                    {
-                        date: new Date(),
-                        code: 500,
-                        message: e.parent.sqlMessage
-                    }
+            res.status(500).send(
+                {
+                    date: new Date(),
+                    code: 500,
+                    message: e
+                }
 
-                );
-            } else {
-                res.status(500).send(
-                    {
-                        date: new Date(),
-                        code: 500,
-                        message: e
-                    }
-                );
-            }
+            );
+            /* if (e.parent.sqlMessage) {
+                 res.status(500).send(
+                     {
+                         date: new Date(),
+                         code: 500,
+                         message: e.parent.sqlMessage
+                     }
+ 
+                 );
+             } else {
+                 res.status(500).send(
+                     {
+                         date: new Date(),
+                         code: 500,
+                         message: e
+                     }
+                 );
+             }*/
         }
 
     },
+
 
     editarUsuario: async (req, res) => {
         try {
@@ -143,14 +152,15 @@ const usuariosService = {
                 if (check) {
 
                     // create a jwt token that is valid for 1 day
-                    const token = jwt.sign({ sub: resultado.id }, config.secret, { expiresIn: '7d' });
+                    var bearer = jwt.sign({ sub: resultado.id }, config.secret, { expiresIn: '7d' });
 
                     res.status(200).send(
 
                         {
                             date: new Date(),
                             code: 200,
-                            message: "Usuário: " + email + " logado com sucesso! \n token: " + token
+                            message: "Usuário: " + email + " logado com sucesso! ",
+                            token: bearer
                         }
 
                     );
