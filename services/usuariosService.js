@@ -1,7 +1,7 @@
-const models = require('../models')
-const bcrypt = require('bcrypt'); // cripto de senha
-const jwt = require('jsonwebtoken');
-const config = require('../config/config.json');
+
+const bcrypt = require('bcrypt');
+const usuariosRepo = require('../repository/usuariosRepo');
+const autenticacao = require('../common/autenticacao');
 
 const usuariosService = {
 
@@ -19,65 +19,26 @@ const usuariosService = {
     cadastrarUsuario: async (req, res) => {
 
         try {
-            let { nome, sobrenome, email, telefone, datanasc, senha } = req.body;
-            let senhaCripto = bcrypt.hashSync(senha, 10);
+            let bodyCopy = req.body;
+            bodyCopy.senha = bcrypt.hashSync(req.body.senha, 10);
 
-            const resultado = await models.usuarios.create({
-                nome: nome,
-                sobrenome: sobrenome,
-                email: email,
-                telefone: telefone,
-                datanasc: datanasc,
-                senha: senhaCripto
+            let inserido = await usuariosRepo.Criar(bodyCopy);
+
+            let bearer = "";
+            if (inserido.id) { bearer = await autenticacao.gerarJWT(inserido.id, '1d'); } else { bearer = ""; }
+
+            res.status(200).json({
+
+                date: new Date(),
+                code: 200,
+                message: inserido,
+                token: bearer
 
             });
 
-            if (resultado) {
+        } catch (error) {
+            res.status(500).send(error);
 
-                
-                // create a jwt token that is valid for 1 day
-                var bearer = jwt.sign({ sub: resultado.dataValues.id }, config.secret, { expiresIn: '1' });
-
-                res.status(200).send(
-
-                    {
-                        date: new Date(),
-                        code: 200,
-                        message: "Usuário" + email + " cadastrado com sucesso!",
-                        token: bearer
-                    }
-
-                );
-
-            }
-
-        } catch (e) {
-            res.status(500).send(
-                {
-                    date: new Date(),
-                    code: 500,
-                    message: e
-                }
-
-            );
-            /* if (e.parent.sqlMessage) {
-                 res.status(500).send(
-                     {
-                         date: new Date(),
-                         code: 500,
-                         message: e.parent.sqlMessage
-                     }
- 
-                 );
-             } else {
-                 res.status(500).send(
-                     {
-                         date: new Date(),
-                         code: 500,
-                         message: e
-                     }
-                 );
-             }*/
         }
 
     },
@@ -128,63 +89,41 @@ const usuariosService = {
 
             let { email, senha } = req.body;
 
-            let senhaCripto = bcrypt.hashSync(senha, 10);
+            let localizado = await usuariosRepo.PesquisarEmail(email);
 
-            let resultado = await models.usuarios.findOne({
-                where: {
-                    email: email
-                }
+  
+            if ( localizado && bcrypt.compareSync(senha, localizado.dataValues.senha)) {
 
-            })
+     
+                let bearer = await autenticacao.gerarJWT(localizado.dataValues.id, '1d'); 
+                res.status(200).send(
 
-            if (resultado === null) {
+                    {
+                        date: new Date(),
+                        code: 200,
+                        message: "Usuário: " + email + " logado com sucesso! ",
+                        token: bearer
+                    }
+
+                );
+
+            } else {
                 res.status(200).send(
                     {
                         date: new Date(),
                         code: 200,
-                        message: "Usuário não encontrado!"
+                        message: "Usuário ou senha inválidos"
                     }
+
                 );
-            } else {
-
-                let check = bcrypt.compareSync(senha, resultado.senha);
-
-                if (check) {
-
-                    // create a jwt token that is valid for 1 day
-                    var bearer = jwt.sign({ sub: resultado.id }, config.secret, { expiresIn: '7d' });
-
-                    res.status(200).send(
-
-                        {
-                            date: new Date(),
-                            code: 200,
-                            message: "Usuário: " + email + " logado com sucesso! ",
-                            token: bearer
-                        }
-
-                    );
-
-                }
-                else {
-                    res.status(200).send(
-                        {
-                            date: new Date(),
-                            code: 200,
-                            message: "Usuário ou senha inválidos"
-                        }
-
-                    );
-                }
-
             }
 
-        } catch (e) {
+        } catch (error) {
             res.status(500).send(
                 {
                     date: new Date(),
                     code: 500,
-                    message: e.message
+                    message: error
                 }
 
             );
