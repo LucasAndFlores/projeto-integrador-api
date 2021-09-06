@@ -1,4 +1,5 @@
 const express = require('express');
+const jwt = require('./middlewares/jwt');
 const app = express();
 const port = 3030;
 const models = require('./models');
@@ -15,7 +16,7 @@ const rotasUsuarios = require('./routes/rotasUsuarios');
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
-
+app.use(jwt()); // use JWT auth to secure the api
 
 app.use('/v1/cartoes', rotasCartoes);
 app.use('/v1/categorias', rotasCategorias);
@@ -23,6 +24,7 @@ app.use('/v1/entradas', rotasEntradas);
 app.use('/v1/objetivos', rotasObjetivos);
 app.use('/v1/transacoes', rotasTransacoes);
 app.use('/v1/usuarios', rotasUsuarios);
+app.use('/v1/usuarios/autorizacao', rotasUsuarios);
 
 app.listen(port, () => {
     console.log('Server started on port: ' + port)
