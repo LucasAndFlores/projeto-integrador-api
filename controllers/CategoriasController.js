@@ -1,15 +1,10 @@
-const models = require('../models')
+const categoriaService = require('../services/categoriasService')
 
 const categoriasControoler = {
     
     todasCategoria: async (req,res) =>{
         try {
-            let all = await models.categoria.findAll({
-                include: {
-                    model: models.transacoes,
-                    as: 'transacoes'
-                }
-            })
+            let all = await categoriaService.verTodas()
             res.status(200).json(all)
         } catch (error) {
             console.log(error)
@@ -18,11 +13,8 @@ const categoriasControoler = {
 
     cadastrarCategoria: async (req, res) => {
         try {
-            let { nomeCategoria } = req.body
-            const inserir = await models.categoria.create({
-                nomeCategoria
-            });
-            res.status(200).json(inserir)
+            let inserir = await categoriaService.criarCategoria(req)
+            res.status(201).json(inserir)
         } catch (error) {
             console.log(error)
         }
@@ -30,19 +22,8 @@ const categoriasControoler = {
 
     atualizarCategoria: async (req,res) => {
         try {
-            let { id } = req.params
-            let { nomeCategoria } = req.body;
-            let atualizandoCategoria = await models.categoria.update(
-                {
-                    nomeCategoria
-                }, 
-                {
-                    where: {id: id}
-                }
-            );
-            let mostrandoCategoria = await models.categoria.findByPk(id)
-
-            res.status(200).json(mostrandoCategoria)
+            let atualizar = await categoriaService.atualizarCategoria(req)
+            res.status(200).json(atualizar)
         } catch (error) {
             console.log(error)
         }
@@ -50,11 +31,8 @@ const categoriasControoler = {
 
     destruirCategoria: async (req, res) => {
         try {
-            let { id } = req.params
-            let categoriaDestruir = await models.categoria.destroy(
-                {where: {id: id}}
-            ) 
-            res.status(200).send('categoria destruida')
+            let deletar = await categoriaService.deletarCategoria(req)
+            res.status(200).send(deletar)
         } catch (error) {
             console.log(error)
         }

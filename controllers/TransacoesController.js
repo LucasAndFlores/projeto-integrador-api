@@ -1,55 +1,31 @@
-const models = require('../models')
+
+const transacoesService = require('../services/transacoesService')
 
 const transacoesController = {
 
     verTransacoes: async (req, res) => {
 
         try {
-            let transacoesExistente = await models.transacoe.findAll({ 
-            });
+            let transacoesExistente = await transacoesService.VerTodas()
             res.status(200).json(transacoesExistente)  
         } catch (error) {
-            res.status(404) 
-            console.log(error)
+            res.send(error)
         }
     },
 
     criarTransacao: async (req, res) => {
         try {
-            let { loja, dataTransacao, meioPagamento, valor, fkCategoriaId } = req.body;
-            const inserir = await models.transacoes.create({
-                    loja,
-                    dataTransacao,
-                    valor,
-                    meioPagamento,
-                    fkCategoriaId
-                })
-
-             res.status(200).json(inserir)
+           let inserido = await transacoesService.CriarTransacao(req.body)
+            res.status(201).json(inserido)
         } catch (error) {
-            console.log(error)
+            res.status(error).send(error)
         }
     },
     
     editarTransacao: async (req,res) => {
         try {
-            let { id } = req.params
-            let { loja, dataTransacao, meioPagamento, valor, fkCategoriaId } = req.body;
-            let atualizandoTransacao = await models.transacoes.update(
-                {
-                    loja,
-                    dataTransacao,
-                    valor, 
-                    meioPagamento,
-                    fkCategoriaId
-                }, 
-                {
-                    where: {id: id}
-                }
-            );
-            let mostrandoTransacao = await models.transacoes.findByPk(id)
-
-            res.status(200).json(mostrandoTransacao)
+            let editar =  await transacoesService.atualizarTransacao(req)
+            res.status(200).json(editar)
         } catch (error) {
             console.log(error)
         }
@@ -57,21 +33,12 @@ const transacoesController = {
 
     deletarTransacao: async (req, res) => {
         try {
-            let { id } = req.params
-            let transacaoDestruir = await models.transacoes.destroy(
-                {where: {id: id}}
-            ) 
-            res.status(200).send('Transação deletada com sucesso!')
+            let deletar = await transacoesService.DeletarTransacao(req)
+            res.status(200).send(deletar)
         } catch (error) {
             console.log(error)
         }
     }
-
-
-
-
-
-
 
 
 }
