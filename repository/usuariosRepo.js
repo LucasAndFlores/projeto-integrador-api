@@ -1,6 +1,6 @@
 const models = require('../models')
 
-module.exports = {
+const usuariosRepo = {
 
     BuscarTodas: async () => {
         try {
@@ -13,17 +13,18 @@ module.exports = {
 
     Criar: async data => {
         try {
-            const inserir = await models.transacoes.create(data)
-            return inserir
+            const inserir = await models.usuarios.create(data);
+            return inserir;
         } catch (error) {
-            return error
+
+            return error.original.sqlMessage
         }
     },
-    
+
     Atualizar: async (data, id) => {
         try {
-            const atualizando = await models.transacoes.update(data,id)
-            return atualizando 
+            const atualizando = await models.transacoes.update(data, id)
+            return atualizando
         } catch (error) {
             return error
         }
@@ -38,13 +39,28 @@ module.exports = {
         }
     },
 
+    PesquisarEmail: async (email) => {
+        try {
+            let localizado = await models.usuarios.findOne({
+                where: {
+                    email: email
+                }
+            });
+            return localizado
+        } catch (error) {
+            return error
+        }
+    },
+
     Deletar: async (where) => {
         try {
-           const deletar = await models.transacoes.destroy(where) 
-           return "transação deletada"
+            const deletar = await models.transacoes.destroy(where)
+            return "transação deletada"
         } catch (error) {
             return error
         }
     }
 
 }
+
+module.exports = usuariosRepo;

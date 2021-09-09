@@ -1,5 +1,7 @@
-const models = require('../models');
-const { Op } = require('sequelize');
+/* const models = require('../models');
+const { Op } = require('sequelize'); */
+
+const entradasService = require('../services/entradasService');
 
 const entradasController = {
 
@@ -8,56 +10,23 @@ const entradasController = {
             let entradasExistentes = await models.entrada.findAll({});
             res.status(200).json(entradasExistentes)
         } catch (error) {
-            console.log(error)
+            res.send(error)
         }    
     },
 
     criarEntrada: async (req, res) => {
         try {
-            let { nome, valor, data } = req.body
-            
-            let localizarEntrada = await models.entrada.findOne({
-                where: {
-                    nome:{
-                        [Op.or]: {
-                            [Op.eq]: nome,
-                            [Op.like]: nome,
-                        }
-                    }
-            }});
-            if (localizarEntrada) {
-                res.send("Entrada já existente")
-            } else {
-
-            const inserir = await models.entrada.create({
-                nome,
-                valor,
-                data,
-            });
-            res.status(200).json(inserir)
-        }
+            let inserido = await entradasService.CriarEntrada(req.body)
+            res.status(201).json(inserido)
         } catch (error) {
-            console.log(error)
+            res.status(error).send(error)
         }
     },
 
     editarEntrada: async (req,res) => {
         try {
-            let { id } = req.params
-            let { nome, valor, data } = req.body;
-            let atualizandoEntrada = await models.entrada.update(
-                {
-                    nome,
-                    valor,
-                    data
-                }, 
-                {
-                    where: {id: id}
-                }
-            );
-            let mostrandoEntrada = await models.entrada.findByPk(id)
-
-            res.status(200).json(mostrandoEntrada)
+            let editar =  await entradasService.atualizarEntrada(req)
+            res.status(200).json(editar)
         } catch (error) {
             console.log(error)
         }
@@ -65,18 +34,12 @@ const entradasController = {
 
     deletarEntrada: async (req, res) => {
         try {
-            let { id } = req.params
-            let entradaDestruir = await models.entrada.destroy(
-                {where: {id: id}}
-            ) 
-            res.status(200).send('entrada destruida')
+            let deletar = await entradasService.DeletarEntrada(req)
+            res.status(200).send(deletar)
         } catch (error) {
             console.log(error)
         }
     }
-
-
-
 }
 
 module.exports = entradasController
