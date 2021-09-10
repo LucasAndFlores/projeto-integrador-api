@@ -7,7 +7,7 @@ const entradasController = {
 
     verEntradas: async (req, res) => {
         try {
-            let entradasExistentes = await models.entrada.findAll({});
+            let entradasExistentes = await entradasService.verEntradas()
             res.status(200).json(entradasExistentes)
         } catch (error) {
             res.send(error)
@@ -16,7 +16,7 @@ const entradasController = {
 
     criarEntrada: async (req, res) => {
         try {
-            let inserido = await entradasService.CriarEntrada(req.body)
+            let inserido = await entradasService.criarEntrada(req)
             res.status(201).json(inserido)
         } catch (error) {
             res.status(error).send(error)
@@ -25,7 +25,7 @@ const entradasController = {
 
     editarEntrada: async (req,res) => {
         try {
-            let editar =  await entradasService.atualizarEntrada(req)
+            let editar =  await entradasService.editarEntrada(req)
             res.status(200).json(editar)
         } catch (error) {
             console.log(error)
@@ -34,7 +34,7 @@ const entradasController = {
 
     deletarEntrada: async (req, res) => {
         try {
-            let deletar = await entradasService.DeletarEntrada(req)
+            let deletar = await entradasService.deletarEntrada(req)
             res.status(200).send(deletar)
         } catch (error) {
             console.log(error)

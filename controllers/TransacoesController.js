@@ -9,7 +9,7 @@ const transacoesController = {
             let transacoesExistente = await transacoesService.VerTodas()
             res.status(200).json(transacoesExistente)  
         } catch (error) {
-            res.send(error)
+            res.status(500).send(error)
         }
     },
 
@@ -18,16 +18,17 @@ const transacoesController = {
            let inserido = await transacoesService.CriarTransacao(req.body)
             res.status(201).json(inserido)
         } catch (error) {
-            res.status(error).send(error)
+            res.status(500).send(error)
         }
     },
     
     editarTransacao: async (req,res) => {
         try {
+            
             let editar =  await transacoesService.atualizarTransacao(req)
             res.status(200).json(editar)
         } catch (error) {
-            console.log(error)
+            res.status(500).send(error)
         }
     },
 
@@ -36,10 +37,9 @@ const transacoesController = {
             let deletar = await transacoesService.DeletarTransacao(req)
             res.status(200).send(deletar)
         } catch (error) {
-            console.log(error)
+            res.status(500).send(error)
         }
     }
-
 
 }
 
