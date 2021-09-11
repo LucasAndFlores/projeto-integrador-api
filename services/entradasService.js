@@ -14,30 +14,15 @@ const entradasService = {
 
     criarEntrada: async (req, res) => {
         try {
-            let { nome, valor, data } = req.body
-            
+            let { nome, valor, data } = req.body           
             const inserir = await entradasRepo.Criar({  
-                where: {
-                    nome:{
-                        [Op.or]: {
-                            [Op.eq]: nome,
-                            [Op.like]: nome,
-                        }
-                    }
-            }});
-            if (localizarEntrada) {
-                res.send("Entrada já existente")
-            } else {
-
-            const inserir = await models.entrada.create({
                 nome,
                 valor,
                 data,
             });
             return inserir
-        }
         } catch (error) {
-            return(error)
+            return  error
         }
     },
 
@@ -69,7 +54,7 @@ const entradasService = {
         try {
             let { id } = req.params
             let deletando = await entradasRepo.Deletar({where: {id: id}})
-            res.status(200).send('entrada destruida')
+            return deletando
         } catch (error) {
             return error
         }

@@ -7,7 +7,7 @@ module.exports = {
             const todosUsuarios = await models.transacoes.findAll({})
             return todosUsuarios
         } catch (error) {
-            return error
+            return (`Erro ao listar transacões: ${error.original.sqlMessage}`)
         }
     },
 
@@ -16,16 +16,18 @@ module.exports = {
             const inserir = await models.transacoes.create(data)
             return inserir
         } catch (error) {
-            return error
+          return (`Erro ao criar transacão: ${error.original.sqlMessage}`)
+            // console.log(error.original.sqlMessage)
         }
     },
     
     Atualizar: async (data, id) => {
         try {
+            
             const atualizando = await models.transacoes.update(data,id)
             return atualizando 
         } catch (error) {
-            return error
+            return (`Erro ao atualizar transação: ${error.original.sqlMessage}`)
         }
     },
 
@@ -34,7 +36,7 @@ module.exports = {
             const localizado = await models.transacoes.findByPk(id)
             return localizado
         } catch (error) {
-            return error
+            return (`Erro ao pesquisar transação: ${error.original.sqlMessage}`)
         }
     },
 
@@ -43,7 +45,7 @@ module.exports = {
            const deletar = await models.transacoes.destroy(where) 
            return "transação deletada"
         } catch (error) {
-            return error
+            return (`Error: ${error.original.sqlMessage}`)
         }
     }
 

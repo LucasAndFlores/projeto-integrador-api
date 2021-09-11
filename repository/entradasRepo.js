@@ -41,7 +41,7 @@ module.exports = {
     Deletar: async (where) => {
         try {
            const deletar = await models.entrada.destroy(where) 
-           return "Objetivo deletado"
+           return "Entrada deletada"
         } catch (error) {
             return error
         }
