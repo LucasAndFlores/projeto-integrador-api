@@ -8,8 +8,7 @@ const jwt = () => {
         path: [
             // public routes that don't require authentication
             '/v1/usuarios/autorizacao',
-            '/v1/usuarios/'
-
+            '/v1/usuarios'
 
         ]
     });

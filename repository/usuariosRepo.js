@@ -4,7 +4,7 @@ const usuariosRepo = {
 
     BuscarTodas: async () => {
         try {
-            const todosUsuarios = await models.transacoes.findAll({})
+            const todosUsuarios = await models.usuarios.findAll({})
             return todosUsuarios
         } catch (error) {
             return error
@@ -13,8 +13,8 @@ const usuariosRepo = {
 
     Criar: async data => {
         try {
-            const inserir = await models.usuarios.create(data);
-            return inserir;
+            const criado = await models.usuarios.create(data);
+            return criado;
         } catch (error) {
 
             return error.original.sqlMessage
@@ -22,9 +22,10 @@ const usuariosRepo = {
     },
 
     Atualizar: async (data, id) => {
+     
         try {
-            const atualizando = await models.transacoes.update(data, id)
-            return atualizando
+            const atualizado = await models.usuarios.update(data, id)
+            return atualizado
         } catch (error) {
             return error
         }
@@ -32,7 +33,7 @@ const usuariosRepo = {
 
     Pesquisar: async (id) => {
         try {
-            const localizado = await models.transacoes.findByPk(id)
+            const localizado = await models.usuarios.findByPk(id)
             return localizado
         } catch (error) {
             return error
@@ -54,8 +55,8 @@ const usuariosRepo = {
 
     Deletar: async (where) => {
         try {
-            const deletar = await models.transacoes.destroy(where)
-            return "transação deletada"
+            const deletado = await models.usuarios.destroy(where)
+            return deletado
         } catch (error) {
             return error
         }

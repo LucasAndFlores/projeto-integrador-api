@@ -7,12 +7,53 @@ const usuariosService = {
 
     verUsuarios: async (req, res) => {
         try {
-            let usuario = await models.usuarios.findAll({
-            })
-            res.status(200).json(usuario);
+            let todosUsuarios = await usuariosRepo.BuscarTodas();
+            res.status(200).json({
+
+                date: new Date(),
+                code: 200,
+                todosUsuarios
+
+            });
         } catch (error) {
-            res.status(404)
-            console.log(error);
+            res.status(500).json({
+
+                date: new Date(),
+                code: 500,
+                message: error
+
+            });
+        }
+    },
+
+    verUsuario: async (req, res) => {
+        try {
+            let usuario = await usuariosRepo.Pesquisar(req.params.id);
+            if (usuario) {
+                res.status(200).json({
+
+                    date: new Date(),
+                    code: 200,
+                    usuario
+
+                });
+            } else {
+                res.status(200).json({
+
+                    date: new Date(),
+                    code: 200,
+                    message: "Usuário não encontrado!"
+
+                });
+            }
+        } catch (error) {
+            res.status(500).json({
+
+                date: new Date(),
+                code: 500,
+                message: error
+
+            });
         }
     },
 
@@ -22,22 +63,28 @@ const usuariosService = {
             let bodyCopy = req.body;
             bodyCopy.senha = bcrypt.hashSync(req.body.senha, 10);
 
-            let inserido = await usuariosRepo.Criar(bodyCopy);
+            let criado = await usuariosRepo.Criar(bodyCopy);
 
             let bearer = "";
-            if (inserido.id) { bearer = await autenticacao.gerarJWT(inserido.id, '1d'); } else { bearer = ""; }
+            if (criado.id) { bearer = await autenticacao.gerarJWT(criado.id, '1d'); } else { bearer = ""; }
 
             res.status(200).json({
 
                 date: new Date(),
                 code: 200,
-                message: inserido,
+                message: criado,
                 token: bearer
 
             });
 
         } catch (error) {
-            res.status(500).send(error);
+            res.status(500).json({
+
+                date: new Date(),
+                code: 500,
+                message: error
+
+            });
 
         }
 
@@ -46,41 +93,94 @@ const usuariosService = {
 
     editarUsuario: async (req, res) => {
         try {
-            const { id } = req.params
-            const { nome, sobrenome, telefone } = req.body;
-            await models.usuarios.update({
+            let { nome, sobrenome, telefone, datanasc } = req.body
+            let atualizado = await usuariosRepo.Atualizar({
                 nome,
                 sobrenome,
-                telefone
-            },
-                {
-                    where: {
-                        id
-                    }
+                telefone,
+                datanasc
+            }, { where: { id: req.params.id } });
+
+            if (atualizado[0] === 1) {
+
+                res.status(200).json({
+
+                    date: new Date(),
+                    code: 200,
+                    message: "Usuário editado com sucesso!"
+
                 });
-            let mostrandoUsuario = await models.usuarios.findByPk(id)
+            } else if (atualizado[0] === 0) {
+                res.status(200).json({
 
-            res.status(200).json(mostrandoUsuario)
+                    date: new Date(),
+                    code: 200,
+                    message: "Este usuário não existe ou não pode ser atualizado!"
 
+                });
+            } else {
+                res.status(500).json({
+
+                    date: new Date(),
+                    code: 200,
+                    message: atualizado
+
+                });
+            }
         } catch (error) {
-            res.status(404)
-            console.log(error)
+            res.status(500).json({
+
+                date: new Date(),
+                code: 500,
+                message: error
+
+            });
         }
 
     },
 
     deletarUsuario: async (req, res) => {
-        try {
-            let { id } = req.params
-            await models.usuarios.destroy(
-                { where: { id: id } }
-            )
-            res.status(200).send('Usuario deletado com sucesso!')
 
+        try {
+            let deletado = await usuariosRepo.Deletar({ where: { id: req.params.id } });
+            if (deletado) {
+                if (deletado === 1) {
+
+                    res.status(200).json({
+
+                        date: new Date(),
+                        code: 200,
+                        message: "Usuário deletado com sucesso!"
+
+                    });
+                } else {
+                    res.status(500).json({
+
+                        date: new Date(),
+                        code: 200,
+                        message: deletado
+
+                    });
+                }
+            } else {
+                res.status(500).json({
+
+                    date: new Date(),
+                    code: 200,
+                    message: "Usuario nao encontrado!"
+
+                });
+            }
         } catch (error) {
-            res.status(404)
-            console.log(error)
+            res.status(500).json({
+
+                date: new Date(),
+                code: 500,
+                message: error
+
+            });
         }
+
     },
 
     autorizarUsuario: async (req, res) => {
@@ -91,11 +191,11 @@ const usuariosService = {
 
             let localizado = await usuariosRepo.PesquisarEmail(email);
 
-  
-            if ( localizado && bcrypt.compareSync(senha, localizado.dataValues.senha)) {
 
-     
-                let bearer = await autenticacao.gerarJWT(localizado.dataValues.id, '1d'); 
+            if (localizado && bcrypt.compareSync(senha, localizado.dataValues.senha)) {
+
+
+                let bearer = await autenticacao.gerarJWT(localizado.dataValues.id, '1d');
                 res.status(200).send(
 
                     {
