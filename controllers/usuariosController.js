@@ -6,12 +6,25 @@ const usuariosController = {
 
     verUsuarios: async (req, res) => {
         try {
-            let usuario = await models.usuarios.findAll({
-            })
-            res.status(200).json(usuario);
+            await usuariosService.verUsuarios(req, res);
         } catch (error) {
-            res.status(404)
-            console.log(error)
+            return res.status(500).send({
+                date: new Date(),
+                code: 500,
+                message: error
+            });
+        }
+    },
+
+    verUsuario: async (req, res) => {
+        try {
+            await usuariosService.verUsuario(req, res);
+        } catch (error) {
+            return res.status(500).send({
+                date: new Date(),
+                code: 500,
+                message: error
+            });
         }
     },
 
@@ -19,62 +32,48 @@ const usuariosController = {
 
         try {
             await usuariosService.cadastrarUsuario(req, res);
-        } catch (e) {
+        } catch (error) {
             return res.status(500).send({
                 date: new Date(),
                 code: 500,
-                message: e.message
+                message: error
             });
         }
     },
 
     editarUsuario: async (req, res) => {
         try {
-            const { id } = req.params
-            const { nome, sobrenome, telefone } = req.body;
-            await models.usuarios.update({
-                nome,
-                sobrenome,
-                telefone
-            },
-                {
-                    where: {
-                        id
-                    }
-                });
-            let mostrandoUsuario = await models.usuarios.findByPk(id)
-
-            res.status(200).json(mostrandoUsuario)
-
+            await usuariosService.editarUsuario(req, res);
         } catch (error) {
-            res.status(404)
-            console.log(error)
+            return res.status(500).send({
+                date: new Date(),
+                code: 500,
+                message: error
+            });
         }
 
     },
 
     deletarUsuario: async (req, res) => {
         try {
-            let { id } = req.params
-            await models.usuarios.destroy(
-                { where: { id: id } }
-            )
-            res.status(200).send('Usuario deletado com sucesso!')
-
+            await usuariosService.deletarUsuario(req, res);
         } catch (error) {
-            res.status(404)
-            console.log(error)
+            return res.status(500).send({
+                date: new Date(),
+                code: 500,
+                message: error
+            });
         }
     },
 
     autorizarUsuario: async (req, res) => {
         try {
             await usuariosService.autorizarUsuario(req, res);
-        } catch (e) {
-            return res.status(400).send({
+        } catch (error) {
+            return res.status(500).send({
                 date: new Date(),
-                code: 400,
-                message: e.message
+                code: 500,
+                message: error
             });
         }
 

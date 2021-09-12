@@ -4,8 +4,8 @@ const usuariosRepo = {
 
     BuscarTodas: async () => {
         try {
-            const todosUsuarios = await models.usuarios.findAll({})
-            return todosUsuarios
+            const todosCartoes = await models.cartoes.findAll({})
+            return todosCartoes
         } catch (error) {
             return error
         }
@@ -13,18 +13,18 @@ const usuariosRepo = {
 
     Criar: async data => {
         try {
-            const criado = await models.usuarios.create(data);
+            const criado = await models.cartoes.create(data);
             return criado;
         } catch (error) {
 
-            return error.original.sqlMessage
+            return error
         }
     },
 
     Atualizar: async (data, id) => {
      
         try {
-            const atualizado = await models.usuarios.update(data, id)
+            const atualizado = await models.cartoes.update(data, id)
             return atualizado
         } catch (error) {
             return error
@@ -33,29 +33,17 @@ const usuariosRepo = {
 
     Pesquisar: async (id) => {
         try {
-            const localizado = await models.usuarios.findByPk(id)
+            const localizado = await models.cartoes.findByPk(id)
             return localizado
         } catch (error) {
             return error
         }
     },
 
-    PesquisarEmail: async (email) => {
-        try {
-            let localizado = await models.usuarios.findOne({
-                where: {
-                    email: email
-                }
-            });
-            return localizado
-        } catch (error) {
-            return error
-        }
-    },
 
     Deletar: async (where) => {
         try {
-            const deletado = await models.usuarios.destroy(where)
+            const deletado = await models.cartoes.destroy(where)
             return deletado
         } catch (error) {
             return error

@@ -1,75 +1,72 @@
-const models = require('../models')
 
+const cartoesService = require('../services/cartoesService');
+
+//
 const cartoesController = {
-    verCartoes: 
-        async (req, res) => {
-            try {
-                let cartoesexistente = await models.cartoes.findAll({});
-                res.status(200).json(cartoesexistente)
-            } catch (error) {
-                console.log(error)
-            }
+
+    verCartoes: async (req, res) => {
+        try {
+            await cartoesService.verCartoes(req, res);
+        } catch (error) {
+            return res.status(500).send({
+                date: new Date(),
+                code: 500,
+                message: error
+            });
+        }
+    },
+
+    verCartao: async (req, res) => {
+        try {
+            await cartoesService.verCartao(req, res);
+        } catch (error) {
+            return res.status(500).send({
+                date: new Date(),
+                code: 500,
+                message: error
+            });
+        }
     },
 
     criarCartao: async (req, res) => {
+    
         try {
-            let {name, digitos, limite, dataDePagamento, tipo} = req.body
-            const inserir = await models.cartoes.create({
-                name,
-                digitos,
-                limite,
-                dataDePagamento,
-                tipo
-            })
-            res.status(200).json(inserir)
+            await cartoesService.criarCartao(req, res);
         } catch (error) {
-            console.log(error)
-        }
-
-
-    },
-
-    editarCartao: async (req,res) => {
-        try {
-            let { id } = req.params
-            let { name, digitos, limite, dataDePagamento, tipo } = req.body
-            let atualizandoCartao = await models.cartoes.update(
-                {
-                    name,
-                    digitos,
-                    limite,
-                    dataDePagamento,
-                    tipo
-                }, 
-                {
-                    where: {id: id}
-                }
-            );
-            let cartaoAtualizado = await models.cartoes.findByPk(id)
-
-            res.status(200).json(cartaoAtualizado)
-            
-        } catch (error) {
-            console.log(error)
+            return res.status(500).send({
+                date: new Date(),
+                code: 500,
+                message: error
+            });
         }
     },
 
-    deletarCartao: async (req,res) => {
+    editarCartao: async (req, res) => {
         try {
-            let { id } = req.params
-            let cartaoDestruir = await models.cartoes.destroy(
-                {where: {id: id}}
-            ) 
-            res.status(200).send('Cartao deletado com sucesso!')
-            
+            await cartoesService.editarCartao(req, res);
         } catch (error) {
-            console.log(error)
+            return res.status(500).send({
+                date: new Date(),
+                code: 500,
+                message: error
+            });
         }
-    }
+
+    },
+
+    deletarCartao: async (req, res) => {
+        try {
+            await cartoesService.deletarCartao(req, res);
+        } catch (error) {
+            return res.status(500).send({
+                date: new Date(),
+                code: 500,
+                message: error
+            });
+        }
+    },
 
 
 }
 
-
-
-module.exports = cartoesController
+module.exports = cartoesController;

@@ -8,8 +8,6 @@ router.put('/:id', cartoesController.editarCartao)
 router.delete('/:id', cartoesController.deletarCartao)
 
 
-// router.get('/objetivos', objetivosController.verObjetivos);
-// router.post('/objetivos', objetivosController.verObjetivos);
  
 
 module.exports = router;

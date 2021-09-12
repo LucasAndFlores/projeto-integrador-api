@@ -1,18 +1,18 @@
 
-const bcrypt = require('bcrypt');
-const usuariosRepo = require('../repository/usuariosRepo');
-const autenticacao = require('../common/autenticacao');
 
-const usuariosService = {
+const cartoesRepo = require('../repository/cartoesRepo');
 
-    verUsuarios: async (req, res) => {
+
+const cartoesService = {
+
+    verCartoes: async (req, res) => {
         try {
-            let todosUsuarios = await usuariosRepo.BuscarTodas();
+            let todosCartoes = await cartoesRepo.BuscarTodas();
             res.status(200).json({
 
                 date: new Date(),
                 code: 200,
-                todosUsuarios
+                todosCartoes
 
             });
         } catch (error) {
@@ -26,15 +26,15 @@ const usuariosService = {
         }
     },
 
-    verUsuario: async (req, res) => {
+    verCartao: async (req, res) => {
         try {
-            let usuario = await usuariosRepo.Pesquisar(req.params.id);
-            if (usuario) {
+            let cartao = await cartoesRepo.Pesquisar(req.params.id);
+            if (cartao) {
                 res.status(200).json({
 
                     date: new Date(),
                     code: 200,
-                    usuario
+                    cartao
 
                 });
             } else {
@@ -57,24 +57,18 @@ const usuariosService = {
         }
     },
 
-    cadastrarUsuario: async (req, res) => {
+    criarCartao: async (req, res) => {
 
         try {
-            let bodyCopy = req.body;
-            bodyCopy.senha = bcrypt.hashSync(req.body.senha, 10);
 
-            let criado = await usuariosRepo.Criar(bodyCopy);
+            let criado = await cartoesRepo.Criar(req.body);
 
-            let bearer = "";
-            if (criado.id) { bearer = await autenticacao.gerarJWT(criado.id, '1d'); } else { bearer = ""; }
 
             res.status(200).json({
 
                 date: new Date(),
                 code: 200,
-                message: criado,
-                token: bearer
-
+                message: criado
             });
 
         } catch (error) {
@@ -91,15 +85,9 @@ const usuariosService = {
     },
 
 
-    editarUsuario: async (req, res) => {
+    editarCartao: async (req, res) => {
         try {
-            let { nome, sobrenome, telefone, datanasc } = req.body
-            let atualizado = await usuariosRepo.Atualizar({
-                nome,
-                sobrenome,
-                telefone,
-                datanasc
-            }, { where: { id: req.params.id } });
+            let atualizado = await cartoesRepo.Atualizar(req.body, { where: { id: req.params.id } });
 
             if (atualizado[0] === 1) {
 
@@ -107,7 +95,7 @@ const usuariosService = {
 
                     date: new Date(),
                     code: 200,
-                    message: "Usuário editado com sucesso!"
+                    message: "Cartão atualizado com sucesso!"
 
                 });
             } else if (atualizado[0] === 0) {
@@ -115,7 +103,7 @@ const usuariosService = {
 
                     date: new Date(),
                     code: 200,
-                    message: "Este usuário não existe ou não pode ser atualizado!"
+                    message: "Este cartão não existe!"
 
                 });
             } else {
@@ -139,10 +127,10 @@ const usuariosService = {
 
     },
 
-    deletarUsuario: async (req, res) => {
+    deletarCartao: async (req, res) => {
 
         try {
-            let deletado = await usuariosRepo.Deletar({ where: { id: req.params.id } });
+            let deletado = await cartoesRepo.Deletar({ where: { id: req.params.id } });
             if (deletado) {
                 if (deletado === 1) {
 
@@ -150,7 +138,7 @@ const usuariosService = {
 
                         date: new Date(),
                         code: 200,
-                        message: "Usuário deletado com sucesso!"
+                        message: "Cartão deletado com sucesso!"
 
                     });
                 } else {
@@ -167,7 +155,7 @@ const usuariosService = {
 
                     date: new Date(),
                     code: 200,
-                    message: "Usuario nao encontrado!"
+                    message: "Cartão nao encontrado!"
 
                 });
             }
@@ -181,55 +169,10 @@ const usuariosService = {
             });
         }
 
-    },
-
-    autorizarUsuario: async (req, res) => {
-
-        try {
-
-            let { email, senha } = req.body;
-
-            let localizado = await usuariosRepo.PesquisarEmail(email);
-
-
-            if (localizado && bcrypt.compareSync(senha, localizado.dataValues.senha)) {
-
-
-                let bearer = await autenticacao.gerarJWT(localizado.dataValues.id, '1d');
-                res.status(200).send(
-
-                    {
-                        date: new Date(),
-                        code: 200,
-                        message: "Usuário: " + email + " logado com sucesso! ",
-                        token: bearer
-                    }
-
-                );
-
-            } else {
-                res.status(200).send(
-                    {
-                        date: new Date(),
-                        code: 200,
-                        message: "Usuário ou senha inválidos"
-                    }
-
-                );
-            }
-
-        } catch (error) {
-            res.status(500).send(
-                {
-                    date: new Date(),
-                    code: 500,
-                    message: error
-                }
-
-            );
-        }
     }
+
+
 
 }
 
-module.exports = usuariosService;
+module.exports = cartoesService;
