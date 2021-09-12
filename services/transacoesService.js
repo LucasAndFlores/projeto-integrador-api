@@ -8,7 +8,7 @@ const transacoesService = {
             let transacoesExistente = await transacoesRepo.BuscarTodas()
             return transacoesExistente
         } catch (error) {
-            res.send(error) 
+            return error 
             
         }
     },
@@ -25,13 +25,15 @@ const transacoesService = {
             })
             return inserir
         } catch (error) {
-            return (error)
+            return error
         }  
     },
 
     atualizarTransacao: async (req) => {
 
         try {
+            
+
             let { id } = req.params
             let { loja, dataTransacao, meioPagamento, valor, fkCategoriaId } = req.body;
             const atualizar = await transacoesRepo.Atualizar(

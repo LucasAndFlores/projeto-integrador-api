@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     }
+    
   }, {
     sequelize,
     modelName: 'transacoes',
