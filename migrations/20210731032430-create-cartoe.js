@@ -5,7 +5,7 @@ module.exports = {
       id: {
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
+        unique: true,
         type: Sequelize.INTEGER
       },
       name: {
@@ -14,6 +14,7 @@ module.exports = {
       },
       digitos: {
         type: Sequelize.INTEGER,
+        primaryKey: true,
         allowNull: false,
       },
       limite: {
@@ -26,6 +27,7 @@ module.exports = {
       },
       tipo: {
         type: Sequelize.STRING,
+        primaryKey: true,
         allowNull: false,
       },
       created_at: {

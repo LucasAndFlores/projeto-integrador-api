@@ -5,11 +5,11 @@ const config = require('../config/config.json');
 const jwt = () => {
     const { secret } = config;
     return expressJwt({ secret, algorithms: ['HS256'] }).unless({
+         // public routes that don't require authentication
         path: [
-            // public routes that don't require authentication
-            '/v1/usuarios/autorizacao',
-            '/v1/usuarios'
-
+            { url: /^\/v1\/usuarios/, methods: ['POST'] },
+            { url: /^\/v1\/usuarios\/autorizacao/, methods: ['POST'] },
+              
         ]
     });
 }
