@@ -17,6 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     nome: DataTypes.STRING,
     valor: DataTypes.FLOAT,
     data: DataTypes.DATE ,
+    fkUsuarioId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'usuarios',
+        key: 'id'
+      }
+    }
     /* categoryId: DataTypes.INTEGER */
   }, {
     sequelize,

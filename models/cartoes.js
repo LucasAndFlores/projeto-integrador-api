@@ -3,6 +3,7 @@ const {
     Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
+
     class cartoes extends Model {
         /**
          * Helper method for defining associations.
@@ -28,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'id'
             }
         },
+
     tipo: DataTypes.STRING,
     }, {
         sequelize,
