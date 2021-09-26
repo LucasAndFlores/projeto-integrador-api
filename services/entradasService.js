@@ -18,7 +18,7 @@ const entradasService = {
             const inserir = await entradasRepo.Criar({  
                 nome,
                 valor,
-                data,
+                data                
             });
             return inserir
         } catch (error) {

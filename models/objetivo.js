@@ -16,7 +16,14 @@ module.exports = (sequelize, DataTypes) => {
   Objetivo.init({
     objetivo: DataTypes.STRING,
     alvo: DataTypes.DECIMAL,
-    dataAlvo: DataTypes.DATE
+    dataAlvo: DataTypes.DATE,
+    fkUsuarioId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'usuarios',
+        key: 'id'
+      }
+    }
   }, {
     sequelize,
     modelName: 'objetivo',
