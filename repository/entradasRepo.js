@@ -11,6 +11,15 @@ module.exports = {
         }
     },
 
+    BuscarTodasId: async (where) => {
+        try {
+            const todosEntradas = await models.entrada.findAll(where)
+            return todosEntradas
+        } catch (error) {
+            return error
+        }
+    },
+
     Criar: async data => {
         try {
             const inserir = await models.entrada.create(data)

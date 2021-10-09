@@ -2,10 +2,29 @@ const transacoesRepo = require('../repository/transacoesRepo')
 
 const transacoesService = {
 
-    VerTodas: async () => {
+    TransacoesPorId: async (req) => {
 
         try {
-            let transacoesExistente = await transacoesRepo.BuscarTodas()
+            let { id } = req.params
+            let transacoesExistentePorUsuario = await transacoesRepo.BuscarPorId(
+                { where: { fkUsuarioId: id }}
+                )
+            return transacoesExistentePorUsuario
+        } catch (error) {
+            return error 
+            
+        }
+    },
+
+
+
+    VerTodas: async (req) => {
+
+        try {
+            let { fkUsuarioId } = req.body
+            let transacoesExistente = await transacoesRepo.BuscarTodas({
+                where: { fkUsuarioId: fkUsuarioId }
+            })
             return transacoesExistente
         } catch (error) {
             return error 
@@ -15,13 +34,14 @@ const transacoesService = {
 
     CriarTransacao: async (req) => {
         try {
-            let { loja, dataTransacao, meioPagamento, valor, fkCategoriaId } = req;
+            let { loja, dataTransacao, meioPagamento, valor, fkCategoriaId, fkUsuarioId } = req.body;
             const inserir = await transacoesRepo.Criar({  
                 loja,
                 dataTransacao,
                 valor,
                 meioPagamento,
-                fkCategoriaId
+                fkCategoriaId,
+                fkUsuarioId
             })
             return inserir
         } catch (error) {

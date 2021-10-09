@@ -18,7 +18,6 @@ const objetivosService = {
         
         try {
             let { id } = req.params;
-            console.log("ID usuario: " , id);
             let todosObjetivosUsuario = await objetivosRepo.BuscarTodas({ where: { fkUsuarioId: id }})
             return todosObjetivosUsuario
         } catch (error) {
