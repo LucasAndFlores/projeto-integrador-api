@@ -2,9 +2,18 @@ const models = require('../models')
 
 module.exports = {
 
-    BuscarTodas: async () => {
+    BuscarPorId: async (where) => {
         try {
-            const todosUsuarios = await models.transacoes.findAll({})
+            const BuscarTransacaoId = await models.transacoes.findAll(where)
+            return BuscarTransacaoId
+        } catch (error) {
+            return (`Erro ao listar transacões: ${error.original.sqlMessage}`)
+        }
+    },
+
+    BuscarTodas: async (where) => {
+        try {
+            const todosUsuarios = await models.transacoes.findAll(where)
             return todosUsuarios
         } catch (error) {
             return (`Erro ao listar transacões: ${error.original.sqlMessage}`)

@@ -5,6 +5,7 @@ const schema = require('../middlewares/schemasMiddleware');
 const middlewareValidacao = require('../middlewares/middlewareValidacao');
 
 router.get('/', transacoesController.verTransacoes);
+router.get('/:id', transacoesController.BuscarTransacoesId);
 router.post('/', middlewareValidacao(schema.transacoes), transacoesController.criarTransacao);
 router.put('/:id', middlewareValidacao(schema.transacoes), transacoesController.editarTransacao);
 router.delete('/:id', transacoesController.deletarTransacao);

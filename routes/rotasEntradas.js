@@ -5,6 +5,7 @@ const schema = require('../middlewares/schemasMiddleware');
 const middlewareValidacao = require('../middlewares/middlewareValidacao');
 
 router.get('/', entradasController.verEntradas);
+router.get('/:id', entradasController.verEntradasPorUsuario);
 router.post('/', middlewareValidacao(schema.entradas), entradasController.criarEntrada);
 router.put('/:id', middlewareValidacao(schema.entradas), entradasController.editarEntrada);
 router.delete('/:id', entradasController.deletarEntrada);

@@ -3,10 +3,21 @@ const transacoesService = require('../services/transacoesService')
 
 const transacoesController = {
 
+    BuscarTransacoesId: async (req, res) => {
+
+        try {
+            let transacoesPorPessoa = await transacoesService.TransacoesPorId(req)
+            res.status(200).json(transacoesPorPessoa)  
+        } catch (error) {
+            res.status(500).send(error)
+        }
+    },
+
+
     verTransacoes: async (req, res) => {
 
         try {
-            let transacoesExistente = await transacoesService.VerTodas()
+            let transacoesExistente = await transacoesService.VerTodas(req)
             res.status(200).json(transacoesExistente)  
         } catch (error) {
             res.status(500).send(error)
@@ -15,7 +26,7 @@ const transacoesController = {
 
     criarTransacao: async (req, res) => {
         try {
-           let inserido = await transacoesService.CriarTransacao(req.body)
+           let inserido = await transacoesService.CriarTransacao(req)
             res.status(201).json(inserido)
         } catch (error) {
             res.status(500).send(error)

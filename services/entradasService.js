@@ -2,6 +2,19 @@ const entradasRepo = require('../repository/entradasRepo');
 
 const entradasService = {
 
+    verEntradasPorId: async (req, res) => {
+        try {
+            let { id } = req.params
+            let entradasExistenteId = await entradasRepo.BuscarTodasId({
+                where: { fkUsuarioId: id }
+            })
+            return entradasExistenteId
+        } catch (error) {
+            res.send(error) 
+            
+        }
+    },
+
     verEntradas: async (req, res) => {
         try {
             let entradasExistente = await entradasRepo.BuscarTodas()
@@ -14,11 +27,12 @@ const entradasService = {
 
     criarEntrada: async (req, res) => {
         try {
-            let { nome, valor, data } = req.body           
+            let { nome, valor, data, fkUsuarioId } = req.body           
             const inserir = await entradasRepo.Criar({  
                 nome,
                 valor,
-                data                
+                data,
+                fkUsuarioId                
             });
             return inserir
         } catch (error) {
