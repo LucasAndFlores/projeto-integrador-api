@@ -14,6 +14,15 @@ const entradasController = {
         }    
     },
 
+    verEntradasPorUsuario: async (req, res) => {
+        try {
+            let entradasPorUsuario = await entradasService.verEntradasPorId(req)
+            res.status(200).json(entradasPorUsuario)
+        } catch (error) {
+            res.send(error)
+        }    
+    },
+
     criarEntrada: async (req, res) => {
         try {
             let inserido = await entradasService.criarEntrada(req)
