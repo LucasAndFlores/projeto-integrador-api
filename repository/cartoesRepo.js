@@ -11,7 +11,19 @@ const usuariosRepo = {
         }
     },
 
+    BuscarTodas: async (where) => {
+        try {
+            const todosCartoes = await models.cartoes.findAll(where)
+            return todosCartoes
+        } catch (error) {
+            return error
+        }
+    },
+
+    
+
     Criar: async data => {
+
         try {
             const criado = await models.cartoes.create(data);
             return criado;

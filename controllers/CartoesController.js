@@ -16,6 +16,20 @@ const cartoesController = {
         }
     },
 
+    verCartoesUsuario: async (req, res) => {
+        try {
+            await cartoesService.verCartoesUsuario(req, res);
+        } catch (error) {
+            return res.status(500).send({
+                date: new Date(),
+                code: 500,
+                message: error
+            });
+        }
+    },
+
+
+
     verCartao: async (req, res) => {
         try {
             await cartoesService.verCartao(req, res);
