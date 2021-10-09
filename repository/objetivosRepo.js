@@ -11,6 +11,15 @@ module.exports = {
         }
     },
 
+    BuscarTodas: async (where) => {
+        try {
+            const todosObjetivos = await models.objetivo.findAll(where)
+            return todosObjetivos
+        } catch (error) {
+            return error
+        }
+    },
+
     Criar: async data => {
         try {
             const inserir = await models.objetivo.create(data)

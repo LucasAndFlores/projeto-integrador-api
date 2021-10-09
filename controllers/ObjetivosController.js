@@ -12,6 +12,16 @@ const objetivosController = {
         }
     },
 
+    buscarObjetivosUsuario: async (req, res) => {
+        
+        try {
+            let todosObjetivosUsuario = await objetivosService.buscarObjetivosUsuario(req)
+            res.status(200).json(todosObjetivosUsuario)    
+        } catch (error) {
+            res.send(error)
+        }
+    },
+
     criarObjetivo: async (req, res) => {
         try {
             let inserido = await objetivosService.criarObjetivo(req)

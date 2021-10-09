@@ -13,13 +13,27 @@ const objetivosService = {
         }
     },
 
+    buscarObjetivosUsuario: async (req, res) => {
+        
+        
+        try {
+            let { id } = req.params;
+            let todosObjetivosUsuario = await objetivosRepo.BuscarTodas({ where: { fkUsuarioId: id }})
+            return todosObjetivosUsuario
+        } catch (error) {
+            res.send(error) 
+            
+        }
+    },
+
     criarObjetivo: async (req, res) => {
         try {
-            let { objetivo, alvo, dataAlvo } = req.body;
+            let { objetivo, alvo, dataAlvo, fkUsuarioId } = req.body;
             const inserir = await objetivosRepo.Criar({
                     objetivo,
                     alvo,
-                    dataAlvo
+                    dataAlvo,   
+                    fkUsuarioId
                 })
 
                 return inserir
