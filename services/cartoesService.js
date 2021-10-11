@@ -26,6 +26,30 @@ const cartoesService = {
         }
     },
 
+    verCartoesUsuario: async (req, res) => {
+
+        let { id } = req.params;
+
+        try {
+            let todosCartoes = await cartoesRepo.BuscarTodas({ where: { fkUsuarioId: id } });
+            res.status(200).json({
+
+                date: new Date(),
+                code: 200,
+                todosCartoes
+
+            });
+        } catch (error) {
+            res.status(500).json({
+
+                date: new Date(),
+                code: 500,
+                message: error
+
+            });
+        }
+    },
+
     verCartao: async (req, res) => {
         try {
             let cartao = await cartoesRepo.Pesquisar(req.params.id);
@@ -58,17 +82,23 @@ const cartoesService = {
     },
 
     criarCartao: async (req, res) => {
-
+       
         try {
-
-            let criado = await cartoesRepo.Criar(req.body);
-
-
+            let { name, digitos, limite, dataDePagamento, tipo, fkUsuarioId } = req.body;
+            const inserir = await cartoesRepo.Criar({
+                name,
+                digitos,
+                limite,
+                dataDePagamento,
+                tipo,
+                fkUsuarioId
+            })
+        
             res.status(200).json({
 
                 date: new Date(),
                 code: 200,
-                message: criado
+                message: inserir
             });
 
         } catch (error) {

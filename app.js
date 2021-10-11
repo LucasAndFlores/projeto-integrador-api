@@ -16,7 +16,7 @@ app.use(cors())
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 
-//app.use(jwt()); 
+app.use(jwt()); 
 
 app.use('/v1/cartoes', rotasCartoes);
 app.use('/v1/categorias', rotasCategorias);

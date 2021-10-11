@@ -201,7 +201,8 @@ const usuariosService = {
                     {
                         date: new Date(),
                         code: 200,
-                        message: "Usuário: " + email + " logado com sucesso! ",
+                        id: localizado.id,
+                        nome: localizado.nome,
                         token: bearer
                     }
 

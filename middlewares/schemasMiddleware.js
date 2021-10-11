@@ -15,7 +15,7 @@ const schemas = {
         name: Joi.string().required(),
         digitos: Joi.number().required(),
         limite: Joi.number().required(),
-        dataDePagamento: Joi.number().required(),
+        dataDePagamento: Joi.date().required(),
         tipo: Joi.string().required(),
         fkUsuarioId: Joi.number()
     }),
