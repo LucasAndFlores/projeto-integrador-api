@@ -9,9 +9,9 @@ const rotasEntradas = require('./routes/rotasEntradas');
 const rotasObjetivos = require('./routes/rotasObjetivos');
 const rotasTransacoes = require('./routes/rotasTransacoes');
 const rotasUsuarios = require('./routes/rotasUsuarios');
+const cors = require('cors')
 
-
-
+app.use(cors())
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
