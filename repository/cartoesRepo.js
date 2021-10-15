@@ -55,6 +55,7 @@ const usuariosRepo = {
 
     Deletar: async (where) => {
         try {
+            
             const deletado = await models.cartoes.destroy(where)
             return deletado
         } catch (error) {
