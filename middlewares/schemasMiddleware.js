@@ -34,7 +34,6 @@ const schemas = {
     usuarios: Joi.object().keys({
         nome: Joi.string().required(),
         sobrenome: Joi.string().required(),
-        email: Joi.string().required(),
         telefone: Joi.string().required()
     })
 }
