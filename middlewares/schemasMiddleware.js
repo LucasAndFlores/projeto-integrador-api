@@ -35,9 +35,7 @@ const schemas = {
         nome: Joi.string().required(),
         sobrenome: Joi.string().required(),
         email: Joi.string().required(),
-        telefone: Joi.string().required(),
-        datanasc: Joi.date().required(),
-        senha: Joi.string().required()
+        telefone: Joi.string().required()
     })
 }
 module.exports = schemas
