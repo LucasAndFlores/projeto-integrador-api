@@ -6,7 +6,7 @@ const middlewareValidacao = require('../middlewares/middlewareValidacao');
 
 router.get('/', usuariosController.verUsuarios);
 router.get('/:id', usuariosController.verUsuario);
-router.post('/', middlewareValidacao(schema.usuarios), usuariosController.cadastrarUsuario);
+router.post('/', usuariosController.cadastrarUsuario);
 router.put('/:id', middlewareValidacao(schema.usuarios), usuariosController.editarUsuario);
 router.delete('/:id', usuariosController.deletarUsuario);
 router.post('/autorizacao', usuariosController.autorizarUsuario);
